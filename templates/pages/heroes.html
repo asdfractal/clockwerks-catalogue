@@ -1,0 +1,11 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="row d-flex justify-content-center py-4">
+	{% for hero in heroes %}
+	<div class="col-12 col-md-3">
+		<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}"><br>
+		<span>{{ hero.name }}</span>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}
