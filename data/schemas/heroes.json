@@ -1,0 +1,7 @@
+[{
+	"_id": "<ObjectId()>",
+	"id": "<integer>",
+	"name": "<string>",
+	"localized_name": "<string>",
+	"primary_attr": "<string>"
+}]
