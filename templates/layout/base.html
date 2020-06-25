@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
 	{% include 'layout/head.html' %}
 </head>
-<body>
+<body class="d-flex flex-column h-100">
+    {% include 'components/header/header.html' %}
 
+    <main class="flex-shrink-0">
+        <section class="container main--wrapper">
+            
+            {% block content %} {% endblock %}
+        </section>
+    </main>
 
+	{% include 'components/footer/footer.html' %}
 	{% include 'layout/scripts.html' %}
 </body>
 </html>
