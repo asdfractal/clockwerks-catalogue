@@ -6,15 +6,20 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 
+
+app.config['MONGO_DBNAME'] = 'fav_dota2_heroes'
+app.config['MONGO_URI'] = os.getenv('MONGO_URI')
+mongo = PyMongo(app)
+
+
 @app.route('/')
 def index():
 	return render_template('pages/index.html')
 
 
-
-
-
-
+@app.route('/heroes')
+def heroes():
+	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find())
 
 
 if __name__ == "__main__":
