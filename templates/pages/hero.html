@@ -1,0 +1,9 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="row d-flex justify-content-center py-4 px-1 mx-auto">
+	<h1>{{ hero.name }}</h1>
+	<div>
+		<img src="{{ hero.image_full }}" alt="">
+	</div>
+</div>
+{% endblock %}

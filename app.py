@@ -22,6 +22,12 @@ def heroes():
 	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find())
 
 
+@app.route('/hero/<hero_id>')
+def hero_page(hero_id):
+	hero = mongo.db.heroes.find_one({"_id": ObjectId(hero_id)})
+	return render_template('pages/hero.html', hero=hero)
+
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     ip = os.environ.get('IP', '127.0.0.1')

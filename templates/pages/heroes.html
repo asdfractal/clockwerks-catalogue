@@ -3,7 +3,9 @@
 <div class="row d-flex justify-content-center py-4 px-1 mx-auto">
 	{% for hero in heroes %}
 	<div class="col-3 col-md-1 p-1">
-		<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}">
+		<a href="{{url_for('hero_page', hero_id=hero._id)}}">
+			<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}">
+		</a>
 	</div>
 	{% endfor %}
 </div>
