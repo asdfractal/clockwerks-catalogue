@@ -20,6 +20,14 @@ def heroes():
 	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find())
 
 
+@app.route('/add-to-favourites/<hero_id>', methods=['POST'])
+def add_to_favourites(hero_id):
+	users = mongo.db.users
+	current_user = users.find_one({'name': 'test'})
+	mongo.db.users.update_one(current_user, {"$push": {"favourites": ObjectId(hero_id)}})
+	return redirect(url_for('heroes'))
+
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     ip = os.environ.get('IP', '127.0.0.1')
