@@ -28,6 +28,14 @@ def add_to_favourites(hero_id):
 	return redirect(url_for('heroes'))
 
 
+@app.route('/remove-from-favourites/<hero_id>', methods=['POST'])
+def remove_from_favourites(hero_id):
+	users = mongo.db.users
+	current_user = users.find_one({'name': 'test'})
+	mongo.db.users.update_one(current_user, {"$pull": {"favourites": ObjectId(hero_id)}})
+	return redirect(url_for('heroes'))
+
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     ip = os.environ.get('IP', '127.0.0.1')
