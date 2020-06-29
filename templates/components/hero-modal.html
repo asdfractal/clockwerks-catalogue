@@ -1,4 +1,4 @@
-{% macro render_modal(id, name, portrait, body) %}
+{% macro render_modal(id, name, portrait, roles, attribute) %}
 <div class="modal fade" id="heroModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="heroModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
@@ -12,7 +12,23 @@
 			<div class="card">
 					<img class="card-img-top" src="{{portrait}}" alt="">
 					<div class="card-body">
-						<h4 class="card-title">{{name}}</h4>
+						<div class="row">
+							<div class="col-6">
+								<h5 class="card-title">{{name}}</h5>
+							</div>
+							<div class="col-6">
+								<p class="card-text text-center text-capitalize">
+								{{attribute}}
+								</p>
+							</div>
+						</div>
+						<div class="col-6">
+							<p class="card-text">
+							{% for role in roles %}
+							{{role}}
+							{% endfor %}
+							</p>
+						</div>
 						<p class="card-text">
 						user comment
 						</p>

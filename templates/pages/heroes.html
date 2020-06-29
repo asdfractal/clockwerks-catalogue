@@ -4,7 +4,7 @@
 <div class="row d-flex justify-content-center py-4 px-1 mx-auto">
 	{% for hero in heroes %}
 	<div class="col-3 col-md-1 p-1">
-		{{ render_modal(hero.id, hero.name, hero.image_full, hero.primary_attr)}}
+		{{ render_modal(hero.id, hero.name, hero.image_full, hero.roles, hero.primary_attr)}}
 		<a href="#heroModal{{hero.id}}" role="button" data-toggle="modal" id="{{ hero.id }}" target="#heroModal">
 			<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail" id="{{ hero.id }}">
 		</a>
