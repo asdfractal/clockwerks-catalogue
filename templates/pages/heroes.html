@@ -9,25 +9,23 @@
 				<div class="card">
 					<img class="card-img-top" src="{{portrait}}" alt="">
 					<div class="card-body">
+						<h5 class="card-title text-center">{{name}}</h5>
 						<div class="row">
-							<div class="col-6">
-								<h5 class="card-title">{{name}}</h5>
+							
+							<div class="col-9">
+								<p class="card-text">
+									{% for role in roles %}
+									{{role}}
+									{% endfor %}
+								</p>
 							</div>
-							<div class="col-6">
-								<p class="card-text text-center text-capitalize">
+							<div class="col-3 text-right">
+								<p class="card-text text-capitalize">
 									{{attribute}}
 								</p>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-12">
-								<p class="card-text">
-									{% for role in roles %}
-									{{role}}.
-									{% endfor %}
-								</p>
-							</div>
-						</div>
+						
 						<p class="card-text">
 							user comment
 						</p>
@@ -57,9 +55,15 @@
 	{% for hero in heroes %}
 	<div class="col-3 col-md-1 p-1">
 		{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr)}}
+		{% if hero._id in user_favourites %}
+		<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
+			<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail is_favourite" id="{{ hero.id }}">
+		</a>
+		{% else %}
 		<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
 			<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail" id="{{ hero.id }}">
 		</a>
+		{% endif %}
 		
 	</div>
 	{% endfor %}

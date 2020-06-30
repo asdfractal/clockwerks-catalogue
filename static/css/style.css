@@ -1,3 +1,7 @@
 .main--wrapper {
     margin-top: 10vh;
 }
+
+.is_favourite {
+	border: 1px white solid;
+}
