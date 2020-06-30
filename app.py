@@ -9,6 +9,8 @@ app.config['MONGO_DBNAME'] = 'fav_dota2_heroes'
 app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 mongo = PyMongo(app)
 
+users = mongo.db.users
+
 
 @app.route('/')
 def index():
@@ -17,12 +19,14 @@ def index():
 
 @app.route('/heroes')
 def heroes():
+	current_user = users.find_one({'name': 'test'})
+	current_user_fav = current_user['favourites']
+	print(current_user_fav)
 	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find())
 
 
 @app.route('/add-to-favourites/<hero_id>', methods=['POST'])
 def add_to_favourites(hero_id):
-	users = mongo.db.users
 	current_user = users.find_one({'name': 'test'})
 	mongo.db.users.update_one(current_user, {"$push": {"favourites": ObjectId(hero_id)}})
 	return redirect(url_for('heroes'))
@@ -30,7 +34,6 @@ def add_to_favourites(hero_id):
 
 @app.route('/remove-from-favourites/<hero_id>', methods=['POST'])
 def remove_from_favourites(hero_id):
-	users = mongo.db.users
 	current_user = users.find_one({'name': 'test'})
 	mongo.db.users.update_one(current_user, {"$pull": {"favourites": ObjectId(hero_id)}})
 	return redirect(url_for('heroes'))
