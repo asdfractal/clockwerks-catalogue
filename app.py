@@ -22,7 +22,7 @@ def heroes():
 	current_user = users.find_one({'name': 'test'})
 	current_user_fav = current_user['favourites']
 	print(current_user_fav)
-	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find())
+	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav)
 
 
 @app.route('/add-to-favourites/<hero_id>', methods=['POST'])
