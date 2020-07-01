@@ -1,11 +1,15 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-<div class="container-fluid">
-	<ul class="list-group">
-		{% for fav in user_favourites %}
-		<li class="list-group-item">
-			<img src="{{fav.image_thumb}}" alt="">{{fav.name}}</li>
-		{% endfor %}
-	</ul>
-</div>
+	{% for fav in user_favourites %}
+	<div class="row py-2">
+		<div class="col-9 col-md-3 offset-md-3">
+			<img src="{{fav.image_thumb}}" alt=""><span class="pl-3">{{fav.name}}</span>
+		</div>
+		<div class="col-3 col-md-6">
+			<form action="{{url_for('remove_from_favourites', hero_id=fav._id)}}" method="POST">
+				<input type="submit" class="modal-submit modal-remove_favourite" value="&#xf005">
+			</form>
+		</div>
+	</div>
+	{% endfor %}
 {% endblock %}
