@@ -39,6 +39,13 @@ def remove_from_favourites(hero_id):
 	return redirect(url_for('heroes'))
 
 
+@app.route('/favourites')
+def user_list():
+	current_user = users.find_one({'name': 'test'})
+	current_user_fav = current_user['favourites']
+	return render_template('pages/user-list.html', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav)
+
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     ip = os.environ.get('IP', '127.0.0.1')
