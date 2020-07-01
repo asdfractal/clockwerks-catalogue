@@ -29,14 +29,14 @@ def heroes():
 def add_to_favourites(hero_id):
 	current_user = users.find_one({'name': 'test'})
 	mongo.db.users.update_one(current_user, {"$push": {"favourites": ObjectId(hero_id)}})
-	return redirect(url_for('heroes'))
+	return redirect(url_for('user_list'))
 
 
 @app.route('/remove-from-favourites/<hero_id>', methods=['POST'])
 def remove_from_favourites(hero_id):
 	current_user = users.find_one({'name': 'test'})
 	mongo.db.users.update_one(current_user, {"$pull": {"favourites": ObjectId(hero_id)}})
-	return redirect(url_for('heroes'))
+	return redirect(url_for('user_list'))
 
 
 @app.route('/favourites')
