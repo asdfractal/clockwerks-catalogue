@@ -42,8 +42,15 @@ def remove_from_favourites(hero_id):
 @app.route('/favourites')
 def user_list():
 	current_user = users.find_one({'name': 'test'})
-	current_user_fav = current_user['favourites']
-	return render_template('pages/user-list.html', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav)
+	current_user_fav_id = current_user['favourites']
+	current_user_fav = []
+
+	for fav in current_user_fav_id:
+		hero = mongo.db.heroes.find_one({'_id': fav})
+		current_user_fav.append(hero)
+
+	print(current_user_fav)
+	return render_template('pages/user-list.html', heroes=mongo.db.heroes.find(), user_favourites_id=current_user_fav_id, user_favourites=current_user_fav)
 
 
 if __name__ == "__main__":

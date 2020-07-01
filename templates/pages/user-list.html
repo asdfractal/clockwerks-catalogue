@@ -3,18 +3,18 @@
 <div id="accordion">
 	{% for fav in user_favourites %}
 	<div class="card">
-		<div class="card-header" id="headingOne">
+		<div class="card-header" id="userFav{{fav._id}}">
 			<h5 class="mb-0">
-				<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-					aria-controls="collapseOne">
-					{{fav}}
+				<button class="btn btn-link" data-toggle="collapse" data-target="#bodyUserFav{{fav._id}}" aria-expanded="true"
+					aria-controls="bodyUserFav{{fav._id}}">
+					<img src="{{fav.image_thumb}}" alt="">{{fav.name}}
 				</button>
 			</h5>
 		</div>
 
-		<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+		<div id="bodyUserFav{{fav._id}}" class="collapse hide" aria-labelledby="userFav{{fav._id}}" data-parent="#accordion">
 			<div class="card-body">
-				body text
+				user comment
 			</div>
 		</div>
 	</div>
