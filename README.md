@@ -1,6 +1,6 @@
-# Favourite Hero
+# Clockwerk's Catalogue
 
--description-
+A small web app designed to allow users to create a list of their favourite heroes from the game 'DOTA 2'.
 
 ## User Experience
 
