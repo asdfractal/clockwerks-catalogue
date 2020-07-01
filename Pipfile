@@ -10,6 +10,7 @@ flask = "*"
 flask-pymongo = "*"
 dnspython = "*"
 flask-login = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
