@@ -29,10 +29,13 @@ The goal of this project is to provide a complete list of all heroes in the comp
 - Easy to use and navigate the website
 - Create an account and view list
 - Create a list of heroes
-### Expectations
+#### Expectations
 - User information is protected
 - Option to add a personal comment about each hero
 - Website load times are sufficient
 
+## Design Choices
+The design of the website is influenced by the target audience as well as the official DOTA 2 website. To achieve this I have chosen the [Slate](https://bootswatch.com/slate/) theme from Bootswatch, which I will use as a base and build upon with my own accents.
 
+### Colours
 
