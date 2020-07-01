@@ -1,16 +1,69 @@
 {% extends 'layout/base.html' %}
-<!-- {% from 'components/hero-modal.html' import render_modal %} -->
 {% macro render_modal(id, name, portrait, roles, attribute) %}
 <div class="modal fade" id="heroModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="heroModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-body">
+			<div class="modal-body modal-hero">
 				<div class="card">
 					<img class="card-img-top" src="{{portrait}}" alt="">
-					<div class="card-body">
-						<h5 class="card-title text-center">{{name}}</h5>
-						<div class="row">
+					<div class="card-body card-hero-body">
+						<div class="container-fluid px-0">
+							<div class="row">
+								<div class="col-12">
+									<h5 class="card-title text-center">{{name}}</h5>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6">
+									<p class="card-text text-capitalize text-right">
+										{% if attribute == 'agility' %}
+										<img src="{{url_for('static', filename='images/icons/agility.png')}}" alt="agility">{{attribute}}
+										{% elif attribute == 'strength' %}
+										<img src="{{url_for('static', filename='images/icons/strength.png')}}" alt="strength">{{attribute}}
+										{% else %}
+										<img src="{{url_for('static', filename='images/icons/intelligence.png')}}" alt="intelligence">{{attribute}}
+										{% endif %}
+									</p>
+									<p class="card-text text-capitalize text-right">{{attack}}</p>
+								</div>
+								<div class="col-6">
+									{% for role in roles %}
+									<p class="card-text">
+										{% if role == 'Carry' %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/carry.png')}}" alt="carry">
+										{% elif role == 'Disabler' %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/disabler.png')}}" alt="disabler">
+										{% elif role == 'Durable' %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/durable.png')}}" alt="durable">
+										{% elif role == 'Escape' %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/escape.png')}}" alt="escape">
+										{% elif role == 'Initiator' %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/initiator.png')}}" alt="initiator">
+										{% elif role == 'Jungler' %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/jungler.png')}}" alt="jungler">
+										{% elif role == 'Nuker' %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/nuker.png')}}" alt="nuker">
+										{% elif role == 'Pusher' %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/pusher.png')}}" alt="pusher">
+										{% else %}
+										{{role}}
+										<img src="{{url_for('static', filename='images/icons/support.png')}}" alt="support">
+										{% endif %}
+									</p>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+						<!-- <div class="row">
 							
 							<div class="col-9">
 								<p class="card-text">
@@ -20,15 +73,9 @@
 								</p>
 							</div>
 							<div class="col-3 text-right">
-								<p class="card-text text-capitalize">
-									{{attribute}}
-								</p>
+								
 							</div>
-						</div>
-						
-						<p class="card-text">
-							user comment
-						</p>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -64,7 +111,6 @@
 			<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail" id="{{ hero.id }}">
 		</a>
 		{% endif %}
-		
 	</div>
 	{% endfor %}
 </div>
