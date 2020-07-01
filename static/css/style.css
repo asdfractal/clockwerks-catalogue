@@ -1,7 +1,24 @@
+button {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
 .main--wrapper {
     margin-top: 10vh;
 }
 
 .is_favourite {
 	border: 1px white solid;
+}
+
+.modal-hero {
+	padding: 0.5rem;
+}
+
+.card-hero-body {
+	padding: 0.5rem;
 }
