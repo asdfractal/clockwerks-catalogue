@@ -1,23 +1,11 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-<div id="accordion">
-	{% for fav in user_favourites %}
-	<div class="card">
-		<div class="card-header" id="userFav{{fav._id}}">
-			<h5 class="mb-0">
-				<button class="btn btn-link" data-toggle="collapse" data-target="#bodyUserFav{{fav._id}}" aria-expanded="true"
-					aria-controls="bodyUserFav{{fav._id}}">
-					<img src="{{fav.image_thumb}}" alt="">{{fav.name}}
-				</button>
-			</h5>
-		</div>
-
-		<div id="bodyUserFav{{fav._id}}" class="collapse hide" aria-labelledby="userFav{{fav._id}}" data-parent="#accordion">
-			<div class="card-body">
-				user comment
-			</div>
-		</div>
-	</div>
-	{% endfor %}
+<div class="container-fluid">
+	<ul class="list-group">
+		{% for fav in user_favourites %}
+		<li class="list-group-item">
+			<img src="{{fav.image_thumb}}" alt="">{{fav.name}}</li>
+		{% endfor %}
+	</ul>
 </div>
 {% endblock %}
