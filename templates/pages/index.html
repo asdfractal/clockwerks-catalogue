@@ -4,12 +4,12 @@
 	<div class="text-center text-uppercase">
 		<h1 class="index-title-text">Clockwerk's Catalogue</h1>
 	</div>
+	<div class="text-center pt-1 pb-3">
+		<h3 class="index-title-subtext">Create your personal hero list</h3>
+	</div>
 </div>
 <div class="d-flex justify-content-center">
-	<a class="btn btn-primary" href="{{url_for('heroes')}}">Sign In</a>
-    <!-- <button type="button" class="btn btn-primary" id="signInButton" data-toggle="modal" data-target="#baseModal">Sign In</button> -->
-</div>
-<div class="d-flex justify-content-center pt-2">
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#baseModal">Sign Up</button>
+	<a class="btn btn-primary index-btn mx-2" href="{{url_for('heroes')}}">Heroes</a>
+	<a class="btn btn-primary index-btn mx-2" href="{{url_for('index')}}">Sign In</a>
 </div>
 {% endblock %}
