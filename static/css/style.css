@@ -1,14 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Oswald&display=swap');
+
 html {
 	height: 100%;
+	font-size: 62.5%;
 }
 
 body {
-	background: url('/static/images/bg_clockwerk.jfif') no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	position: relative;
+	color: #fff;
+	font-family: 'Oswald', sans-serif;
+	font-size: 1.6em;
 }
 
 button {
@@ -20,9 +20,38 @@ p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-.main--wrapper {
-	margin-top: 12vh;
+.navbar-brand {
+	height: 10vh;
 }
+
+.index-main-wrapper {
+	background: url('/static/images/bg_clockwerk.jfif') no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	position: relative;
+	height: 100%;
+}
+
+.index-content-wrapper {
+	margin-top: 50vh;
+}
+
+.index-title-text {
+	font-family: 'Audiowide', cursive;
+	font-size: 3.25rem;
+}
+
+.heroes-main-wrapper {
+	/* background: ; */
+}
+
+.heroes-content-wrapper {
+	margin-top: 15vh;
+}
+
+
 
 .is_favourite {
 	border: 1px white solid;

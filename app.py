@@ -14,7 +14,7 @@ users = mongo.db.users
 
 @app.route('/')
 def index():
-	return render_template('pages/index.html')
+	return render_template('pages/index.html', main_wrapper='index-main-wrapper', content_wrapper='index-content-wrapper')
 
 
 @app.route('/heroes')
@@ -22,7 +22,7 @@ def heroes():
 	current_user = users.find_one({'name': 'test'})
 	current_user_fav = current_user['favourites']
 	print(current_user_fav)
-	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav)
+	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav, main_wrapper='heroes-main-wrapper', content_wrapper='heroes-content-wrapper')
 
 
 @app.route('/add-to-favourites/<hero_id>', methods=['POST'])

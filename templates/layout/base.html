@@ -6,8 +6,8 @@
 <body class="d-flex flex-column h-100">
     {% include 'components/header/header.html' %}
 
-    <main class="flex-shrink-0">
-        <section class="container main--wrapper">
+    <main class="flex-shrink-0 {{main_wrapper}}">
+        <section class="container {{content_wrapper}}">
             
             {% block content %} {% endblock %}
         </section>
