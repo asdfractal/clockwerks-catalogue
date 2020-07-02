@@ -7,14 +7,14 @@
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse flex-row-reverse" id="navbarToggler">
-            <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <ul class="navbar-nav text-center text-uppercase">
+            <li class="nav-item {% if request.endpoint == 'index' %}active{% endif %}">
+                <a class="nav-link" href="{{url_for('index')}}">Home<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if request.endpoint == 'heroes' %}active{% endif %}">
                 <a class="nav-link" href="{{url_for('heroes')}}">Hereos</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item {% if request.endpoint == 'user_list' %}active{% endif %}">
                 <a class="nav-link" href="{{url_for('user_list')}}">Favourites</a>
             </li>
             </ul>
