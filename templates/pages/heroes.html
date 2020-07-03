@@ -85,9 +85,9 @@
 
 
 {% block content %}
-<div class="row d-flex justify-content-center py-4 px-1 mx-auto">
+<div class="row d-flex justify-content-center py-3 mx-auto">
 	{% for hero in heroes %}
-	<div class="col-3 col-md-1 p-1">
+	<div class="col-3 col-md-1 hero-thumbnail">
 		{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr)}}
 		{% if hero._id in user_favourites %}
 		<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">

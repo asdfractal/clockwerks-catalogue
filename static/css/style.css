@@ -70,10 +70,13 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .heroes-content-wrapper {
-	margin-top: 15vh;
+	margin-top: 10vh;
+	margin-bottom: 10vh;
 }
 
-
+.hero-thumbnail {
+	padding: 0.5rem;
+}
 
 .is_favourite {
 	border: 1px white solid;
