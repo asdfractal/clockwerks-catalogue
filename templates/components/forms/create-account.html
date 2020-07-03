@@ -1,0 +1,25 @@
+<form method="POST">
+	<fieldset>
+		<legend class="form-title">Create Account</legend>
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" class="form-control" id="username" name="username" placeholder="enter username">
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" class="form-control" id="password" name="password" placeholder="enter password">
+		</div>
+		<div class="form-group">
+			<label for="password_confirm">Confirm Password</label>
+			<input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="confirm password">
+		</div>
+		<div class="form-group">
+			<button class="btn form-btn float-right">Register</button>
+		</div>
+	</fieldset>
+</form>
+<div class="row pt-5">
+	<div class="col-12 text-right">
+		<p>Have an account? <a class="form-text-link" href="{{url_for('create_account')}}">Login.</a></p>
+	</div>
+</div>
