@@ -66,17 +66,27 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				{% if id in user_favourites %}
-				<form action="{{url_for('remove_from_favourites', hero_id=id)}}" method="POST">
-					<input type="submit" class="modal-submit modal-remove_favourite" value="&#xf005">
-				</form>
-				{% else %}
-				<form action="{{url_for('add_to_favourites', hero_id=id)}}" method="POST">
-					<input type="submit" class="modal-submit modal-add_favourite" value="&#xf005">
-				</form>
-				{% endif %}
+			<div class="row px-2">
+				<div class="col-3 pl-4">
+					<button type="button" class="btn-modal float-left" data-dismiss="modal">
+						<i class="far fa-times-circle"></i>
+					</button>
+				</div>
+				<div class="col-3 offset-6 pr-4">
+					{% if id in user_favourites %}
+					<form action="{{url_for('remove_from_favourites', hero_id=id)}}" method="POST">
+						<button class="btn-modal btn-favourite-gold float-right" type="submit">
+							<i class="fas fa-star"></i>
+						</button>
+					</form>
+					{% else %}
+					<form action="{{url_for('add_to_favourites', hero_id=id)}}" method="POST">
+						<button class="btn-modal float-right" type="submit">
+							<i class="far fa-star"></i>
+						</button>
+					</form>
+					{% endif %}
+				</div>
 			</div>
 		</div>
 	</div>
