@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Lato:wght@300;400&display=swap');
 
 html {
 	height: 100%;
@@ -6,8 +6,9 @@ html {
 }
 
 body {
-	color: #fff;
+	color: #F0EFF4;
 	font-family: 'Lato', sans-serif;
+	font-weight: 300;
 	font-size: 1.6em;
 }
 
@@ -20,6 +21,10 @@ p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+.navbar {
+	border: 0;
+}
+
 .navbar-brand {
 	height: 10vh;
 	padding: 1.1rem 0 0 0.4rem;
@@ -29,6 +34,11 @@ p, h1, h2, h3, h4, h5, h6 {
 	font-size: 3.5rem;
 	border: none;
 	padding-top: 0.5rem;
+}
+
+.nav-item {
+	font-size: 1.8rem;
+	font-weight: 400;
 }
 
 .footer-wrapper {
@@ -62,7 +72,16 @@ p, h1, h2, h3, h4, h5, h6 {
 	font-size: 2rem;
 	width: 30vw;
 	padding: 0.5rem 0;
-	border: #9E2F19 1.5px solid;
+	
+}
+
+.index-heroes-btn {
+	border: #9E2F19 1px solid;
+}
+
+.index-account-btn {
+	background-color: #9E829C;
+	color: #F0EFF4;
 }
 
 .heroes-main-wrapper {
@@ -72,6 +91,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .heroes-content-wrapper {
 	margin-top: 10vh;
 	margin-bottom: 10vh;
+	padding-top: 1rem;
 }
 
 .hero-thumbnail {
@@ -79,17 +99,25 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .is_favourite {
-	border: 1px white solid;
+	border: 1px #F0EFF4 solid;
 }
 
-.btn-modal {
+.btn-favourite {
 	font-size: 3.5rem;
+	color: #F0EFF4;
 	background-color: transparent;
 	border: none;
 }
 
 .btn-favourite-gold {
-	color: gold;
+	color: #D7920A;
+}
+
+.btn-modal-close {
+	font-size: 3.5rem;
+	color: #7A8288;
+	background-color: transparent;
+	border: none;
 }
 
 .modal-hero {
@@ -100,6 +128,12 @@ p, h1, h2, h3, h4, h5, h6 {
 	padding: 0.5rem;
 }
 
+.modal-hero-title {
+	font-family: 'Audiowide', cursive;
+	font-size: 2.5rem;
+	color: #9E2F19;
+}
+
 .favourites-main-wrapper {
 
 }
@@ -107,7 +141,20 @@ p, h1, h2, h3, h4, h5, h6 {
 .favourites-content-wrapper {
 	margin-top: 10vh;
 	margin-bottom: 10vh;
-	padding-top: 2rem;
+	padding-top: 1rem;
+}
+
+.favourites-title-wrapper {
+	padding-bottom: 1rem;
+}
+
+.favourites-title {
+	font-size: 3rem;
+	font-family: 'Audiowide', cursive;
+	text-align: center;
+	text-transform: uppercase;
+	color:#9E2F19;
+	border-bottom: 1px solid #F0EFF4;
 }
 
 .account-main-wrapper {
