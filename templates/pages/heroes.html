@@ -2,7 +2,7 @@
 {% macro render_modal(id, name, portrait, roles, attribute) %}
 <div class="modal fade" id="heroModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="heroModalLabel"
 	aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-body modal-hero">
 				<div class="card">
@@ -11,7 +11,7 @@
 						<div class="container-fluid px-0">
 							<div class="row">
 								<div class="col-12">
-									<h5 class="card-title text-center">{{name}}</h5>
+									<h2 class="card-title modal-hero-title text-center">{{name}}</h2>
 								</div>
 							</div>
 							<div class="row">
@@ -68,20 +68,20 @@
 			</div>
 			<div class="row px-2">
 				<div class="col-3 pl-4">
-					<button type="button" class="btn-modal" data-dismiss="modal">
+					<button type="button" class="btn-modal-close" data-dismiss="modal">
 						<i class="far fa-times-circle"></i>
 					</button>
 				</div>
 				<div class="col-3 offset-6 pr-4">
 					{% if id in user_favourites %}
 					<form action="{{url_for('remove_from_favourites', hero_id=id)}}" method="POST">
-						<button class="btn-modal btn-favourite-gold" type="submit">
+						<button class="btn-favourite btn-favourite-gold" type="submit">
 							<i class="fas fa-star"></i>
 						</button>
 					</form>
 					{% else %}
 					<form action="{{url_for('add_to_favourites', hero_id=id)}}" method="POST">
-						<button class="btn-modal" type="submit">
+						<button class="btn-favourite" type="submit">
 							<i class="far fa-star"></i>
 						</button>
 					</form>
