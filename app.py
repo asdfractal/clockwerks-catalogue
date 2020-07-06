@@ -64,6 +64,9 @@ def check_password(hash, password):
 @app.route('/user/create', methods=['GET', 'POST'])
 def create_account():
 
+	if session:
+		return redirect(url_for('user_list'))
+
 	if request.method == 'POST':
 		password = request.form['password']
 		password_confirm = request.form['password_confirm']
@@ -86,6 +89,9 @@ def create_account():
 @app.route('/user/login', methods=['GET', 'POST'])
 def login():
 
+	if session:
+		return redirect(url_for('user_list'))
+
 	if request.method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
@@ -94,9 +100,16 @@ def login():
 		check_pw = check_password_hash(current_user_pw, password)
 		if check_pw == True:
 			print(check_pw)
+			session['username'] = request.form['username']
 			return redirect(url_for('user_list'))
 
 	return render_template('pages/user-account.html', create_account=False, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
+
+
+@app.route('/user/logout')
+def logout():
+	session.clear()
+	return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
