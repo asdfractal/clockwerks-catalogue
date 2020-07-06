@@ -21,28 +21,28 @@ def index():
 
 @app.route('/heroes')
 def heroes():
-	current_user = users.find_one({'name': 'test'})
+	current_user = users.find_one({'name': session['username']})
 	current_user_fav = current_user['favourites']
 	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav, main_wrapper='heroes-main-wrapper', content_wrapper='heroes-content-wrapper')
 
 
 @app.route('/add-to-favourites/<hero_id>', methods=['POST'])
 def add_to_favourites(hero_id):
-	current_user = users.find_one({'name': 'test'})
+	current_user = users.find_one({'name': session['username']})
 	mongo.db.users.update_one(current_user, {"$push": {"favourites": ObjectId(hero_id)}})
 	return redirect(url_for('user_list'))
 
 
 @app.route('/remove-from-favourites/<hero_id>', methods=['POST'])
 def remove_from_favourites(hero_id):
-	current_user = users.find_one({'name': 'test'})
+	current_user = users.find_one({'name': session['username']})
 	mongo.db.users.update_one(current_user, {"$pull": {"favourites": ObjectId(hero_id)}})
 	return redirect(url_for('user_list'))
 
 
 @app.route('/favourites')
 def user_list():
-	current_user = users.find_one({'name': 'test'})
+	current_user = users.find_one({'name': session['username']})
 	current_user_fav_id = current_user['favourites']
 	current_user_fav = []
 
