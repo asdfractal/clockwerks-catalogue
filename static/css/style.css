@@ -98,7 +98,7 @@ p, h1, h2, h3, h4, h5, h6 {
 	padding: 0.5rem;
 }
 
-.is_favourite {
+.favourite_border {
 	border: 1px #F0EFF4 solid;
 }
 
@@ -168,8 +168,9 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .form-title {
 	font-family: 'Audiowide', cursive;
-	font-size: 2.5rem;
+	font-size: 3rem;
 	text-align: center;
+	color:#9E2F19;
 }
 
 .form-control {
