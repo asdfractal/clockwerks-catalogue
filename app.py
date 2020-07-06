@@ -93,7 +93,7 @@ def create_account():
 			session['username'] = username
 			return redirect(url_for('heroes'))
 
-	return render_template('pages/user-account.html', create_account=True, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
+	return render_template('pages/user-account.html', title="Create Account", create_account=True, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
 
 
 @app.route('/user/login', methods=['GET', 'POST'])
@@ -112,7 +112,7 @@ def login():
 			session['username'] = request.form['username']
 			return redirect(url_for('user_list'))
 
-	return render_template('pages/user-account.html', create_account=False, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
+	return render_template('pages/user-account.html', title="Login", create_account=False, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
 
 
 @app.route('/user/logout')
