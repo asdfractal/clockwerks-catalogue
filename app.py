@@ -61,6 +61,14 @@ def check_password(hash, password):
 	return check_password_hash(hash, password)
 
 
+def create_user(username, password):
+	users.insert_one({
+		'name': username,
+		'password': password,
+		'favourites': []
+	})
+
+
 @app.route('/user/create', methods=['GET', 'POST'])
 def create_account():
 
@@ -68,19 +76,13 @@ def create_account():
 		return redirect(url_for('user_list'))
 
 	if request.method == 'POST':
+		username = request.form['username'].lower()
 		password = request.form['password']
 		password_confirm = request.form['password_confirm']
 		if password == password_confirm:
 			hash_pw = set_password(password)
-			users.insert_one({
-				'name': request.form['username'].lower(),
-				'password': hash_pw,
-				'favourites': []
-			})
-			session['username'] = request.form['username']
-			print('ok')
-			print(session)
-			print(hash_pw)
+			create_user(username, hash_pw)
+			session['username'] = username
 			return redirect(url_for('heroes'))
 
 	return render_template('pages/user-account.html', create_account=True, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
@@ -93,13 +95,12 @@ def login():
 		return redirect(url_for('user_list'))
 
 	if request.method == 'POST':
-		username = request.form['username']
+		username = request.form['username'].lower()
 		password = request.form['password']
 		current_user = users.find_one({'name': username})
 		current_user_pw = current_user['password']
 		check_pw = check_password_hash(current_user_pw, password)
 		if check_pw == True:
-			print(check_pw)
 			session['username'] = request.form['username']
 			return redirect(url_for('user_list'))
 
