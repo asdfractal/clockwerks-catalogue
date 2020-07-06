@@ -78,7 +78,6 @@ p, h1, h2, h3, h4, h5, h6 {
 	font-size: 2rem;
 	width: 30vw;
 	padding: 0.5rem 0;
-	
 }
 
 .index-heroes-btn {
@@ -206,4 +205,79 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .form-text-link {
 	color: #9E2F19;
+}
+
+@media only screen and (min-width: 321px) {
+	.heroes-content-wrapper {
+		padding: 1rem 5vw 0 9vw;
+	}
+}
+
+@media only screen and (min-width: 500px) {
+	.footer-text {
+		font-size: 1.3rem;
+		padding-top: 1rem;
+	}
+	.index-btn {
+		width: 20vw;
+	}
+	.index-content-wrapper {
+		padding: 0 15vw;
+	}
+	.heroes-content-wrapper {
+		padding: 1rem 10vw 0 18vw;
+	}
+}
+
+@media only screen and (min-width: 576px) {
+	.heroes-content-wrapper {
+		padding: 1rem 10vw 0 12vw;
+	}
+}
+
+/* min-height to exclude long phones in landscape eg; pixel 2 */
+@media only screen and (min-width: 768px) and (min-height: 420px) {
+	.footer-text {
+		font-size: 1.6rem;
+		padding-top: 1rem;
+	}
+	.index-btn {
+		width: 17vw;
+	}
+	.index-content-wrapper {
+		padding: 0 10vw;
+	}
+	.index-title-wrapper {
+		padding-bottom: 5rem;
+	}
+	.index-title-text {
+		padding-bottom: 2rem;
+	}
+	.heroes-content-wrapper {
+		padding: 1rem 10vw 0 12vw;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.index-title-text  {
+		font-size: 4rem;
+	}
+	.index-title-subtext {
+		font-size: 2.8rem;
+	}
+	.index-btn {
+		font-size: 2.4rem;
+	}
+	.heroes-content-wrapper {
+		padding: 1rem 5vw 0 5vw;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.index-btn {
+		width: 14vw;
+	}
+	.heroes-content-wrapper {
+		padding: 1rem 5vw 0 8vw;
+	}
 }
