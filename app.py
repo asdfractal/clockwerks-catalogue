@@ -16,14 +16,12 @@ users = mongo.db.users
 
 @app.route('/')
 def index():
-	return render_template('pages/index.html', main_wrapper='index-main-wrapper', content_wrapper='index-content-wrapper')
+	return render_template('pages/index.html', title='Home', main_wrapper='index-main-wrapper', content_wrapper='index-content-wrapper')
 
 
 @app.route('/heroes')
 def heroes():
-	current_user = users.find_one({'name': session['username']})
-	current_user_fav = current_user['favourites']
-	return render_template('pages/heroes.html', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav, main_wrapper='heroes-main-wrapper', content_wrapper='heroes-content-wrapper')
+	return render_template('pages/heroes.html', title='Heroes', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav, main_wrapper='heroes-main-wrapper', content_wrapper='heroes-content-wrapper')
 
 
 @app.route('/add-to-favourites/<hero_id>', methods=['POST'])
@@ -50,7 +48,7 @@ def user_list():
 		hero = mongo.db.heroes.find_one({'_id': fav})
 		current_user_fav.append(hero)
 
-	return render_template('pages/user-list.html', heroes=mongo.db.heroes.find(), user_favourites_id=current_user_fav_id, user_favourites=current_user_fav, main_wrapper='favourites-main-wrapper', content_wrapper='favourites-content-wrapper')
+	return render_template('pages/user-list.html', title='Favourites', heroes=mongo.db.heroes.find(), user_favourites_id=current_user_fav_id, user_favourites=current_user_fav, main_wrapper='favourites-main-wrapper', content_wrapper='favourites-content-wrapper')
 
 
 def set_password(password):
