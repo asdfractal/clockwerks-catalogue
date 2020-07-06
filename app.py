@@ -21,6 +21,12 @@ def index():
 
 @app.route('/heroes')
 def heroes():
+	if session:
+		current_user = users.find_one({'name': session['username']})
+		current_user_fav = current_user['favourites']
+	else:
+		current_user_fav = []
+		
 	return render_template('pages/heroes.html', title='Heroes', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav, main_wrapper='heroes-main-wrapper', content_wrapper='heroes-content-wrapper')
 
 
@@ -40,15 +46,19 @@ def remove_from_favourites(hero_id):
 
 @app.route('/favourites')
 def user_list():
-	current_user = users.find_one({'name': session['username']})
-	current_user_fav_id = current_user['favourites']
-	current_user_fav = []
+	if session:
+		current_user = users.find_one({'name': session['username']})
+		current_user_fav_id = current_user['favourites']
+		current_user_fav = []
 
-	for fav in current_user_fav_id:
-		hero = mongo.db.heroes.find_one({'_id': fav})
-		current_user_fav.append(hero)
+		for fav in current_user_fav_id:
+			hero = mongo.db.heroes.find_one({'_id': fav})
+			current_user_fav.append(hero)
 
-	return render_template('pages/user-list.html', title='Favourites', heroes=mongo.db.heroes.find(), user_favourites_id=current_user_fav_id, user_favourites=current_user_fav, main_wrapper='favourites-main-wrapper', content_wrapper='favourites-content-wrapper')
+		return render_template('pages/user-list.html', title='Favourites', heroes=mongo.db.heroes.find(), user_favourites_id=current_user_fav_id, user_favourites=current_user_fav, main_wrapper='favourites-main-wrapper', content_wrapper='favourites-content-wrapper')
+	
+	else:
+		return redirect(url_for('create_account'))
 
 
 def set_password(password):
