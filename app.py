@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
@@ -52,6 +53,15 @@ def user_list():
 	return render_template('pages/user-list.html', heroes=mongo.db.heroes.find(), user_favourites_id=current_user_fav_id, user_favourites=current_user_fav, main_wrapper='favourites-main-wrapper', content_wrapper='favourites-content-wrapper')
 
 
+def set_password(password):
+	hash_pw = generate_password_hash(password)
+	return hash_pw
+
+
+def check_password(hash, password):
+	return check_password_hash(hash, password)
+
+
 @app.route('/user/create', methods=['GET', 'POST'])
 def create_account():
 
@@ -59,15 +69,16 @@ def create_account():
 		password = request.form['password']
 		password_confirm = request.form['password_confirm']
 		if password == password_confirm:
+			hash_pw = set_password(password)
 			users.insert_one({
 				'name': request.form['username'].lower(),
-				'password': password,
+				'password': hash_pw,
 				'favourites': []
 			})
 			session['username'] = request.form['username']
 			print('ok')
 			print(session)
-			print(session['username'])
+			print(hash_pw)
 			return redirect(url_for('heroes'))
 
 	return render_template('pages/user-account.html', create_account=True, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
