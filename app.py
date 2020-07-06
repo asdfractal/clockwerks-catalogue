@@ -54,8 +54,7 @@ def user_list():
 
 
 def set_password(password):
-	hash_pw = generate_password_hash(password)
-	return hash_pw
+	return generate_password_hash(password)
 
 
 def check_password(hash, password):
@@ -84,8 +83,19 @@ def create_account():
 	return render_template('pages/user-account.html', create_account=True, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
 
 
-@app.route('/user/login')
+@app.route('/user/login', methods=['GET', 'POST'])
 def login():
+
+	if request.method == 'POST':
+		username = request.form['username']
+		password = request.form['password']
+		current_user = users.find_one({'name': username})
+		current_user_pw = current_user['password']
+		check_pw = check_password_hash(current_user_pw, password)
+		if check_pw == True:
+			print(check_pw)
+			return redirect(url_for('user_list'))
+
 	return render_template('pages/user-account.html', create_account=False, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
 
 
