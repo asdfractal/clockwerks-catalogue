@@ -15,7 +15,7 @@
                 <a class="nav-link" href="{{url_for('heroes')}}">Hereos</a>
 			</li>
 			<li class="nav-item {% if request.endpoint == 'user_list' %}active{% endif %}">
-                <a class="nav-link" href="{{url_for('user_list')}}">Favourites</a>
+                <a class="nav-link {% if not session %}disabled{% endif %}" href="{{url_for('user_list')}}">Favourites</a>
 			</li>
 			{% if session['username'] %}
 			<li class="nav-item">
