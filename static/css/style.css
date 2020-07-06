@@ -45,6 +45,12 @@ p, h1, h2, h3, h4, h5, h6 {
 	height: 7vh;
 }
 
+.footer-text {
+	font-size: 1.5rem;
+	line-height: 1;
+	margin-top: 0.5rem;
+}
+
 .index-main-wrapper {
 	background: url('/static/images/bg_clockwerk.jfif') no-repeat center center;
 	-webkit-background-size: cover;
