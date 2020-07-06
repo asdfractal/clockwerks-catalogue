@@ -10,6 +10,10 @@
 </div>
 <div class="d-flex justify-content-center">
 	<a class="btn btn-primary index-btn index-heroes-btn mx-2" href="{{url_for('heroes')}}">Heroes</a>
+	{% if session['username'] %}
+	<a class="btn index-btn index-account-btn mx-2" href="{{url_for('login')}}">Favourites</a>
+	{% else %}
 	<a class="btn index-btn index-account-btn mx-2" href="{{url_for('login')}}">Sign In</a>
+	{% endif %}
 </div>
 {% endblock %}
