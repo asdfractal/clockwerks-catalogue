@@ -79,7 +79,7 @@
 					<p><a class="form-text-link" href="{{url_for('create_account')}}">Create an account.</a></p>
 				</div>
 				{% else %}
-					<div class="col-3 offset-6 pr-4">
+					<div class="col-3 offset-6 pr-4 text-right">
 					{% if id in user_favourites %}
 						<form action="{{url_for('remove_from_favourites', hero_id=id)}}" method="POST">
 							<button class="btn-favourite btn-favourite-gold" type="submit">
@@ -105,7 +105,7 @@
 {% block content %}
 <div class="row d-flex justify-content-center py-3 mx-auto">
 	{% for hero in heroes %}
-	<div class="col-3 col-md-1 hero-thumbnail">
+	<div class="col-3 col-sm-2 col-lg-1 hero-thumbnail">
 		{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr)}}
 		{% if hero._id in user_favourites %}
 		<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
