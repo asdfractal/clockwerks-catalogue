@@ -182,7 +182,12 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .account-content-wrapper {
-	
+	padding: 0 3vw;
+}
+
+.account-box {
+	background: rgba(0, 0, 0, 0.3);
+	padding: 1rem 0.8rem;
 }
 
 .form-title {
@@ -253,6 +258,9 @@ p, h1, h2, h3, h4, h5, h6 {
 	.favourites-box {
 		padding: 0.8rem 1.5rem;
 	}
+	.account-content-wrapper {
+		padding: 0 15vw;
+	}
 }
 
 @media only screen and (min-width: 576px) {
@@ -261,6 +269,12 @@ p, h1, h2, h3, h4, h5, h6 {
 	}
 	.favourites-content-wrapper {
 		padding: 1rem 22vw;
+	}
+	.account-content-wrapper {
+		padding: 0 20vw;
+	}
+	.account-box {
+		padding: 1rem 1.5rem;
 	}
 }
 
@@ -293,6 +307,9 @@ p, h1, h2, h3, h4, h5, h6 {
 	.favourites-content-wrapper {
 		padding: 1rem 27vw;
 	}
+	.account-content-wrapper {
+		padding: 0 25vw;
+	}
 }
 
 @media only screen and (min-width: 992px) {
@@ -311,6 +328,9 @@ p, h1, h2, h3, h4, h5, h6 {
 	.favourites-content-wrapper {
 		padding: 1rem 33vw;
 	}
+	.account-content-wrapper {
+		padding: 0 30vw;
+	}
 }
 
 @media only screen and (min-width: 1200px) {
@@ -319,5 +339,8 @@ p, h1, h2, h3, h4, h5, h6 {
 	}
 	.heroes-content-wrapper {
 		padding: 1rem 5vw 0 8vw;
+	}
+	.account-content-wrapper {
+		padding: 0 35vw;
 	}
 }
