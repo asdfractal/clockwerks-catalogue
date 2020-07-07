@@ -103,20 +103,22 @@
 
 
 {% block content %}
-<div class="row d-flex justify-content-center py-3 mx-auto">
-	{% for hero in heroes %}
-	<div class="col-3 col-sm-2 col-lg-1 hero-thumbnail">
-		{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr)}}
-		{% if hero._id in user_favourites %}
-		<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
-			<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail is_favourite" id="{{ hero.id }}">
-		</a>
-		{% else %}
-		<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
-			<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail" id="{{ hero.id }}">
-		</a>
-		{% endif %}
+<div class="heroes-box">
+	<div class="row d-flex justify-content-center mx-auto">
+		{% for hero in heroes %}
+		<div class="hero-thumbnail">
+			{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr)}}
+			{% if hero._id in user_favourites %}
+			<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
+				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail is_favourite" id="{{ hero.id }}">
+			</a>
+			{% else %}
+			<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
+				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail" id="{{ hero.id }}">
+			</a>
+			{% endif %}
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
 </div>
 {% endblock %}

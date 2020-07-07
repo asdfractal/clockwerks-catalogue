@@ -91,14 +91,16 @@ p, h1, h2, h3, h4, h5, h6 {
 	color: #F0EFF4;
 }
 
-.heroes-main-wrapper {
-	/* background: ; */
-}
-
 .heroes-content-wrapper {
 	margin-top: 10vh;
 	margin-bottom: 10vh;
 	padding-top: 1rem;
+}
+
+.heroes-box {
+	background: rgba(0, 0, 0, 0.3);
+	margin-top: 1rem;
+	padding: 0.6rem 0;
 }
 
 .hero-thumbnail {
@@ -228,7 +230,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 @media only screen and (min-width: 321px) {
 	.heroes-content-wrapper {
-		padding: 1rem 5vw 0 9vw;
+		padding: 1rem 4vw;
 	}
 	.favourites-content-wrapper {
 		padding: 1rem 4vw;
@@ -250,7 +252,10 @@ p, h1, h2, h3, h4, h5, h6 {
 		padding: 0 15vw;
 	}
 	.heroes-content-wrapper {
-		padding: 1rem 10vw 0 18vw;
+		padding: 1rem 8vw;
+	}
+	.heroes-box {
+		padding: 1rem 0.5rem;
 	}
 	.favourites-content-wrapper {
 		padding: 1rem 18vw;
@@ -302,7 +307,10 @@ p, h1, h2, h3, h4, h5, h6 {
 		padding-bottom: 2rem;
 	}
 	.heroes-content-wrapper {
-		padding: 1rem 10vw 0 12vw;
+		padding: 1rem 10vw;
+	}
+	.heroes-box {
+		padding: 2rem 0.5rem;
 	}
 	.favourites-content-wrapper {
 		padding: 1rem 27vw;
@@ -323,7 +331,10 @@ p, h1, h2, h3, h4, h5, h6 {
 		font-size: 2.4rem;
 	}
 	.heroes-content-wrapper {
-		padding: 1rem 5vw 0 5vw;
+		padding: 1rem 9vw;
+	}
+	.heroes-box {
+		padding: 2rem 1.5rem;
 	}
 	.favourites-content-wrapper {
 		padding: 1rem 33vw;
@@ -338,7 +349,7 @@ p, h1, h2, h3, h4, h5, h6 {
 		width: 14vw;
 	}
 	.heroes-content-wrapper {
-		padding: 1rem 5vw 0 8vw;
+		padding: 1rem 15vw;
 	}
 	.account-content-wrapper {
 		padding: 0 35vw;
