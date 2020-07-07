@@ -4,6 +4,9 @@
 	<h4 class="favourites-title">Favourites</h4>
 </div>
 <div class="container favourites-box">
+	{% if user_favourites|length == 0 %}
+	<p class="text-center">You have no favourite heroes! <a class="form-text-link" href="{{url_for('heroes')}}">Add one.</a></p>
+	{% endif %}
 	{% for fav in user_favourites %}
 	<div class="row">
 		<div class="col-9 my-auto">
@@ -20,3 +23,4 @@
 	{% endfor %}
 </div>
 {% endblock %}
+commit -m "add template to handle if user has an empty favourites list"it commit -m "add template to handle if user has an empty favourites list
