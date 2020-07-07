@@ -21,13 +21,14 @@ p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-.navbar {
+.navbar .nav-link {
 	border: 0;
 }
 
 .navbar-brand {
 	height: 10vh;
 	padding: 1.1rem 0 0 0.4rem;
+	border: 0;
 }
 
 .navbar-toggler {
@@ -39,6 +40,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .nav-item {
 	font-size: 1.8rem;
 	font-weight: 400;
+	border: 0;
 }
 
 .footer-wrapper {
@@ -237,6 +239,11 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* min-height to exclude long phones in landscape eg; pixel 2 */
 @media only screen and (min-width: 768px) and (min-height: 420px) {
+	.navbar-brand {
+		height: 10vh;
+		padding-top: 2rem;
+		padding-left: 1.2rem;
+	}
 	.footer-text {
 		font-size: 1.6rem;
 		padding-top: 1rem;
