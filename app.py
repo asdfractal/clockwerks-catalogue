@@ -115,11 +115,16 @@ def login():
 		username = request.form['username'].lower()
 		password = request.form['password']
 		current_user = users.find_one({'name': username})
-		current_user_pw = current_user['password']
-		check_pw = check_password_hash(current_user_pw, password)
-		if check_pw == True:
-			session['username'] = request.form['username']
-			return redirect(url_for('user_list'))
+		if current_user:
+			current_user_pw = current_user['password']
+			check_pw = check_password_hash(current_user_pw, password)
+			if check_pw == True:
+				session['username'] = request.form['username']
+				return redirect(url_for('user_list'))
+			else:
+				flash('Incorrect password, please try again.')
+		else:
+			flash('That username does not exist.')
 
 	return render_template('pages/user-account.html', title="Login", create_account=False, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
 
