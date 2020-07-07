@@ -1,7 +1,12 @@
 [{
 	"_id": "<ObjectId()>",
-	"id": "<integer>",
+	"id": "integer",
 	"name": "<string>",
-	"localized_name": "<string>",
-	"primary_attr": "<string>"
+	"primary_attr": "<string>",
+	"image_thumb": "<string>",
+	"image_full": "<string>",
+	"roles": [
+		"<string>",
+		"<string>"
+	]
 }]
