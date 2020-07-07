@@ -21,13 +21,12 @@ def index():
 
 @app.route('/heroes')
 def heroes():
-	if session:
+	try:
 		current_user = users.find_one({'name': session['username']})
 		current_user_fav = current_user['favourites']
-	else:
-		current_user_fav = []
-		
-	return render_template('pages/heroes.html', title='Heroes', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav, main_wrapper='heroes-main-wrapper', content_wrapper='heroes-content-wrapper')
+		return render_template('pages/heroes.html', title='Heroes', heroes=mongo.db.heroes.find(), user_favourites=current_user_fav, main_wrapper='heroes-main-wrapper', content_wrapper='heroes-content-wrapper')
+	except:
+		return render_template('pages/heroes.html', title='Heroes', heroes=mongo.db.heroes.find(),main_wrapper='heroes-main-wrapper', content_wrapper='heroes-content-wrapper')
 
 
 @app.route('/add-to-favourites/<hero_id>', methods=['POST'])
