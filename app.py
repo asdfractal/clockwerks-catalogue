@@ -134,6 +134,12 @@ def logout():
 	return redirect(url_for('index'))
 
 
+@app.errorhandler(404)
+def error_page_not_found(e):
+	error = str(e)
+	return render_template('pages/error.html', error=error, main_wrapper='error-main-wrapper', content_wrapper='error-content-wrapper'), 404
+
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     ip = os.environ.get('IP', '127.0.0.1')

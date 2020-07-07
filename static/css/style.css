@@ -244,6 +244,27 @@ hr {
 	color: red;
 }
 
+.error-main-wrapper {
+	background: url('/static/images/bg_clockwerk.jfif') no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	position: relative;
+	height: 100%;
+}
+
+.error-content-wrapper {
+	margin-top: 50vh;
+	padding: 1rem 1rem;
+	text-align: center;
+}
+
+.error-box {
+	background: rgba(0, 0, 0, 0.6);
+	padding: 1rem 0.8rem;
+}
+
 @media only screen and (min-width: 321px) {
 	.heroes-content-wrapper {
 		padding: 1rem 4vw;
