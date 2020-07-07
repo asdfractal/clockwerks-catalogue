@@ -239,6 +239,11 @@ hr {
 	color: #9E2F19;
 }
 
+.form-message-error {
+	font-size: 1.4rem;
+	color: red;
+}
+
 @media only screen and (min-width: 321px) {
 	.heroes-content-wrapper {
 		padding: 1rem 4vw;
