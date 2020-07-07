@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -69,6 +69,10 @@ def check_password(hash, password):
 	return check_password_hash(hash, password)
 
 
+def check_user(username):
+	return users.find_one({'name': request.form['username']})
+
+
 def create_user(username, password):
 	users.insert_one({
 		'name': username,
@@ -85,13 +89,16 @@ def create_account():
 
 	if request.method == 'POST':
 		username = request.form['username'].lower()
+		user_exists = check_user(username)
 		password = request.form['password']
 		password_confirm = request.form['password_confirm']
 		if password == password_confirm:
-			hash_pw = set_password(password)
-			create_user(username, hash_pw)
-			session['username'] = username
-			return redirect(url_for('heroes'))
+			if user_exists is None:
+				hash_pw = set_password(password)
+				create_user(username, hash_pw)
+				session['username'] = username
+				return redirect(url_for('heroes'))
+			print('user exist')
 
 	return render_template('pages/user-account.html', title="Create Account", create_account=True, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
 
