@@ -21,6 +21,11 @@ p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+hr {
+	margin: 1rem 0.5rem;
+	border-top: 1px rgba(240, 239, 244, 0.5) solid;
+}
+
 .navbar .nav-link {
 	border: 0;
 }
@@ -105,6 +110,12 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .hero-thumbnail {
 	padding: 0.5rem;
+}
+
+.hero-guide-icon {
+	font-size: 5rem;
+	padding: 0 1rem;
+	color: #9E2F19;
 }
 
 .favourite_border {
