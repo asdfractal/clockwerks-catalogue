@@ -3,12 +3,13 @@
 <div class="favourites-title-wrapper">
 	<h4 class="favourites-title">Favourites</h4>
 </div>
+<div class="container favourites-box">
 	{% for fav in user_favourites %}
 	<div class="row">
-		<div class="col-9 col-md-3 offset-md-3 my-auto">
+		<div class="col-9 my-auto">
 			<img src="{{fav.image_thumb}}" alt=""><span class="pl-3">{{fav.name}}</span>
 		</div>
-		<div class="col-3 col-md-6">
+		<div class="col-3">
 			<form action="{{url_for('remove_from_favourites', hero_id=fav._id)}}" method="POST">
 				<button class="btn-favourite btn-favourite-gold" type="submit">
 					<i class="fas fa-star"></i>
@@ -17,4 +18,5 @@
 		</div>
 	</div>
 	{% endfor %}
+</div>
 {% endblock %}

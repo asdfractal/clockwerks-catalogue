@@ -148,7 +148,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .favourites-content-wrapper {
 	margin-top: 10vh;
 	margin-bottom: 10vh;
-	padding-top: 1rem;
+	padding: 1rem 0.5rem;
 }
 
 .favourites-title-wrapper {
@@ -161,7 +161,19 @@ p, h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 	text-transform: uppercase;
 	color:#9E2F19;
+}
+
+.favourites-title:after {
+	content: "";
+	display: block;
+	margin: 0 auto;
+	width: 250px;
 	border-bottom: 1px solid #F0EFF4;
+}
+
+.favourites-box {
+	background: rgba(0, 0, 0, 0.3);
+	padding: 0 0.8rem;
 }
 
 .account-main-wrapper {
@@ -213,6 +225,12 @@ p, h1, h2, h3, h4, h5, h6 {
 	.heroes-content-wrapper {
 		padding: 1rem 5vw 0 9vw;
 	}
+	.favourites-content-wrapper {
+		padding: 1rem 4vw;
+	}
+	.favourites-box {
+		padding: 0 0.5rem;
+	}
 }
 
 @media only screen and (min-width: 500px) {
@@ -229,11 +247,20 @@ p, h1, h2, h3, h4, h5, h6 {
 	.heroes-content-wrapper {
 		padding: 1rem 10vw 0 18vw;
 	}
+	.favourites-content-wrapper {
+		padding: 1rem 18vw;
+	}
+	.favourites-box {
+		padding: 0.8rem 1.5rem;
+	}
 }
 
 @media only screen and (min-width: 576px) {
 	.heroes-content-wrapper {
 		padding: 1rem 10vw 0 12vw;
+	}
+	.favourites-content-wrapper {
+		padding: 1rem 22vw;
 	}
 }
 
@@ -263,6 +290,9 @@ p, h1, h2, h3, h4, h5, h6 {
 	.heroes-content-wrapper {
 		padding: 1rem 10vw 0 12vw;
 	}
+	.favourites-content-wrapper {
+		padding: 1rem 27vw;
+	}
 }
 
 @media only screen and (min-width: 992px) {
@@ -277,6 +307,9 @@ p, h1, h2, h3, h4, h5, h6 {
 	}
 	.heroes-content-wrapper {
 		padding: 1rem 5vw 0 5vw;
+	}
+	.favourites-content-wrapper {
+		padding: 1rem 33vw;
 	}
 }
 
