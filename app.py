@@ -98,7 +98,9 @@ def create_account():
 				create_user(username, hash_pw)
 				session['username'] = username
 				return redirect(url_for('heroes'))
-			print('user exist')
+			flash('Username is taken, please try another one.')
+		else:
+			flash('Password does not match, please re-enter.')
 
 	return render_template('pages/user-account.html', title="Create Account", create_account=True, main_wrapper='account-main-wrapper', content_wrapper='account-content-wrapper')
 
