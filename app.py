@@ -192,7 +192,25 @@ def logout():
 def user_profile(username):
 	current_user = users.find_one({'name': session['username']})
 
-	return render_template('pages/user-account.html', title="Dashboard", main_wrapper='account-main-wrapper',
+	return render_template('pages/user-account.html', title="Profile",
+	edit_profile=False, main_wrapper='account-main-wrapper',
+	content_wrapper='account-content-wrapper', current_user=current_user)
+
+
+@app.route('/edit/<username>', methods=['GET', 'POST'])
+def edit_profile(username):
+	current_user = users.find_one({'name': session['username']})
+	print(current_user)
+	current_user_id = current_user['_id']
+	print(current_user_id)
+
+	if request.method == 'POST':
+		users.update_one( {'_id': current_user_id},
+		{ '$set': {'primary_role': request.form.get('primary_role')}})
+		return redirect(url_for('user_profile', username=current_user['name']))
+
+	return render_template('pages/user-account.html', title="Edit Profile",
+	edit_profile=True, main_wrapper='account-main-wrapper',
 	content_wrapper='account-content-wrapper', current_user=current_user)
 
 
