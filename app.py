@@ -140,7 +140,7 @@ def create_account():
 				hash_pw = set_password(password)
 				create_user(username, hash_pw)
 				session['username'] = username
-				return redirect(url_for('heroes'))
+				return redirect(url_for('user_profile', username=username))
 			flash('Username is taken, please try another one.')
 		else:
 			flash('Password does not match, please re-enter.')
@@ -168,7 +168,7 @@ def login():
 			check_pw = check_password_hash(current_user_pw, password)
 			if check_pw == True:
 				session['username'] = request.form['username']
-				return redirect(url_for('user_list'))
+				return redirect(url_for('user_profile', username=username))
 			else:
 				flash('Incorrect password, please try again.')
 		else:
@@ -186,6 +186,14 @@ def logout():
 	"""
 	session.clear()
 	return redirect(url_for('index'))
+
+
+@app.route('/user/<username>')
+def user_profile(username):
+	current_user = users.find_one({'name': session['username']})
+
+	return render_template('pages/user-account.html', title="Dashboard", main_wrapper='account-main-wrapper',
+	content_wrapper='account-content-wrapper', current_user=current_user)
 
 
 @app.errorhandler(404)
