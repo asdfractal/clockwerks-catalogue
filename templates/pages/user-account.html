@@ -2,7 +2,11 @@
 {% block content %}
 <div class="account-box">
 {% if session %}
-{% include 'components/user-profile.html' %}
+	{% if edit_profile == True %}
+	{% include 'components/forms/edit-profile.html' %}
+	{% else %}
+	{% include 'components/user-profile.html' %}
+	{% endif %}
 {% else %}
 	{% if create_account == True %}
 	{% include 'components/forms/create-account.html' %}
