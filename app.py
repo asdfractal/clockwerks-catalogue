@@ -206,7 +206,12 @@ def edit_profile(username):
 
 	if request.method == 'POST':
 		users.update_one( {'_id': current_user_id},
-		{ '$set': {'primary_role': request.form.get('primary_role')}})
+		{ '$set': {
+			'primary_role': request.form.get('primary_role'),
+			'region': request.form.get('region'),
+			'best_rank': request.form.get('best_rank'),
+			'current_rank': request.form.get('current_rank')
+			}})
 		return redirect(url_for('user_profile', username=current_user['name']))
 
 	return render_template('pages/user-account.html', title="Edit Profile",
