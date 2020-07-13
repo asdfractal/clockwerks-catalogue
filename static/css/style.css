@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Lato:wght@300;400;500&display=swap');
 
 html {
 	height: 100%;
@@ -203,6 +203,16 @@ hr {
 	padding: 1rem 0.8rem;
 }
 
+.profile-title-text {
+	font-family: 'Audiowide', cursive;
+	font-size: 2.5rem;
+	color: #9E2F19;
+}
+
+.profile-text-bold {
+	font-weight: 500;
+}
+
 .form-title {
 	font-family: 'Audiowide', cursive;
 	font-size: 3rem;
@@ -212,13 +222,6 @@ hr {
 
 .form-control {
 	font-size: 1.4rem;
-}
-
-.form-btn {
-	width: 100px;
-	height: 40px;
-	background: #9E2F19;
-	font-size: 1.8rem;
 }
 
 .form-btn {

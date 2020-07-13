@@ -1,7 +1,7 @@
 <div class="profile-inner-wrapper p-4">
 	<div class="row profile-title">
 		<div class="col-6 col-md-4 offset-md-2">
-			<h1>{{ current_user['name'] }}</h1>
+			<h1 class="profile-title-text text-capitalize">{{ current_user['name'] }}</h1>
 		</div>
 		<div class="col-6">
 			<img class="" src="http://cdn.dota2.com/apps/dota2/images/heroes/antimage_sb.png" alt="">
@@ -10,7 +10,7 @@
 	<hr class="mb-4">
 	<div class="row">
 		<div class="col-6 col-md-4 offset-md-2">
-			<p>Primary role</p>
+			<p class="profile-text-bold">Primary role</p>
 		</div>
 		<div class="col-6">
 			<p>{{ current_user['primary_role']}}</p>
@@ -18,7 +18,7 @@
 	</div>
 	<div class="row">
 		<div class="col-6 col-md-4 offset-md-2">
-			<p>Region</p>
+			<p class="profile-text-bold">Region</p>
 		</div>
 		<div class="col-6">
 			<p>{{ current_user['region']}}</p>
@@ -26,14 +26,14 @@
 	</div>
 	<div class="row">
 		<div class="col-6 col-md-4 offset-md-2">
-			<p>Best rank</p>
+			<p class="profile-text-bold">Best rank</p>
 		</div>
 		<div class="col-6">
 			<p>{{ current_user['best_rank']}}</p>
 		</div>
 	</div><div class="row">
 		<div class="col-6 col-md-4 offset-md-2">
-			<p>Current rank</p>
+			<p class="profile-text-bold">Current rank</p>
 		</div>
 		<div class="col-6">
 			<p>{{ current_user['current_rank']}}</p>
@@ -41,7 +41,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12">
-			<a class="btn btn-primary float-right" href="{{ url_for('edit_profile', username=current_user['name']) }}">Edit Profile</a>
+			<a class="btn btn-primary form-btn-create float-right" href="{{ url_for('edit_profile', username=current_user['name']) }}">Update</a>
 		</div>
 	</div>
 </div>
