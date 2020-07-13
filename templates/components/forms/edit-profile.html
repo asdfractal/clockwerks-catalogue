@@ -3,13 +3,54 @@
 		<div class="form-group">
 		<label for="profilePrimaryRole">Primary role</label>
 		<select class="form-control" id="profilePrimaryRole" name="primary_role">
-			<option value="{{ current_user['primary_role'] }}" disabled selected>Current role: {{ current_user['primary_role'] }}</option>
+			<option value="{{ current_user['primary_role'] }}" selected>Current role: {{ current_user['primary_role'] }}</option>
 			<option value="Carry">Carry</option>
 			<option value="Support">Support</option>
 			<option value="Offlane">Offlane</option>
 			<option Value="Roamer">Roamer</option>
 		</select>
 		</div>
+		<div class="form-group">
+		<label for="profilePrimaryRole">Region</label>
+			<select class="form-control" id="profilePrimaryRole" name="region">
+				<option value="{{ current_user['region'] }}" selected>{{ current_user['region'] }}</option>
+				<option value="Oceania">Oceania</option>
+				<option value="Europe">Europe</option>
+				<option value="CIS">CIS</option>
+				<option value="China">China</option>
+				<option Value="North America">North America</option>
+				<option Value="South America">South America</option>
+			</select>
+		</div>
+		<div class="form-group">
+		<label for="profileBestRank">Best Rank</label>
+			<select class="form-control" id="profileBestRank" name="best_rank">
+				<option value="{{ current_user['best_rank'] }}" selected>{{ current_user['best_rank'] }}</option>
+				<option value="Immortal">Immortal</option>
+				<option value="Divine">Divine</option>
+				<option value="Ancient">Ancient</option>
+				<option value="Legend">Legend</option>
+				<option Value="Archon">Archon</option>
+				<option Value="Crusader">Crusader</option>
+				<option Value="Guardian">Guardian</option>
+				<option Value="Herald">Herald</option>
+			</select>
+		</div>
+		<div class="form-group">
+		<label for="profileCurrentRank">Current Rank</label>
+			<select class="form-control" id="profileCurrentRank" name="current_rank">
+				<option value="{{ current_user['current_rank'] }}" selected>{{ current_user['current_rank'] }}</option>
+				<option value="Immortal">Immortal</option>
+				<option value="Divine">Divine</option>
+				<option value="Ancient">Ancient</option>
+				<option value="Legend">Legend</option>
+				<option Value="Archon">Archon</option>
+				<option Value="Crusader">Crusader</option>
+				<option Value="Guardian">Guardian</option>
+				<option Value="Herald">Herald</option>
+			</select>
+		</div>
+			
 		
 
 		<div class="form-group">
