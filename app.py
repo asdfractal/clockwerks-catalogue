@@ -230,7 +230,5 @@ def error_page_not_found(e):
 	content_wrapper='error-content-wrapper'), 404
 
 
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    ip = os.environ.get('IP', '127.0.0.1')
-    app.run(host=ip, port=port, debug=True)
+if __name__ == '__main__':
+	app.run(host=os.getenv('IP'), port=os.getenv('PORT'), debug=True)
