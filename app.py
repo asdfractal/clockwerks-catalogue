@@ -243,5 +243,16 @@ def error_page_not_found(error):
                            content_wrapper='error-content-wrapper'), 404
 
 
+@APP.errorhandler(500)
+def error_internal_server(error):
+    """
+    Renders a 500 error page.
+    """
+    error = str(error)
+    return render_template('pages/error.html', error=error,
+                           main_wrapper='error-main-wrapper',
+                           content_wrapper='error-content-wrapper'), 500
+
+
 if __name__ == '__main__':
     APP.run(host=os.getenv('IP'), port=os.getenv('PORT'), debug=True)
