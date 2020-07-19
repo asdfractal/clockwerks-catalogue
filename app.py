@@ -233,11 +233,11 @@ def edit_profile(username):
 
 
 @APP.errorhandler(404)
-def error_page_not_found(e):
+def error_page_not_found(error):
     """
     Renders a 404 error page.
     """
-    error = str(e)
+    error = str(error)
     return render_template('pages/error.html', error=error,
                            main_wrapper='error-main-wrapper',
                            content_wrapper='error-content-wrapper'), 404
