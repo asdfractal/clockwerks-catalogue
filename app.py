@@ -212,11 +212,13 @@ def edit_profile(username):
     print(current_user)
     current_user_id = current_user['_id']
     print(current_user_id)
+    current_role = current_user['primary_role']
+    print(current_role)
 
     if request.method == 'POST':
         USERS.update_one({'_id': current_user_id},
                          {'$set': {
-                             'primary_role': request.form.get('primary_role'),
+                             'primary_role': request.form.get('primary_role', current_role),
                              'region': request.form.get('region'),
                              'best_rank': request.form.get('best_rank'),
                              'current_rank': request.form.get('current_rank')

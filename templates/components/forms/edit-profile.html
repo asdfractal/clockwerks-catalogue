@@ -3,7 +3,7 @@
 		<div class="form-group">
 		<label for="profilePrimaryRole">Primary role</label>
 		<select class="form-control" id="profilePrimaryRole" name="primary_role">
-			<option value="{{ current_user['primary_role'] }}" selected>Current role: {{ current_user['primary_role'] }}</option>
+			<option disabled selected>Current role: {{ current_user['primary_role'] }}</option>
 			<option value="Carry">Carry</option>
 			<option value="Support">Support</option>
 			<option value="Offlane">Offlane</option>
