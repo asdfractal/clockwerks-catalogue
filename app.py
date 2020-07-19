@@ -99,11 +99,11 @@ def set_password(password):
     return generate_password_hash(password)
 
 
-def check_password(hash, password):
+def check_password(hash_pw, password):
     """
     Decrypts user password.
     """
-    return check_password_hash(hash, password)
+    return check_password_hash(hash_pw, password)
 
 
 def check_user(username):
