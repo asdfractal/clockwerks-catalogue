@@ -209,19 +209,19 @@ def user_profile(username):
 @APP.route('/edit/<username>', methods=['GET', 'POST'])
 def edit_profile(username):
     current_user = USERS.find_one({'name': session['username']})
-    print(current_user)
     current_user_id = current_user['_id']
-    print(current_user_id)
     current_role = current_user['primary_role']
-    print(current_role)
+    current_region = current_user['region']
+    current_brank = current_user['best_rank']
+    current_crank = current_user['current_rank']
 
     if request.method == 'POST':
         USERS.update_one({'_id': current_user_id},
                          {'$set': {
                              'primary_role': request.form.get('primary_role', current_role),
-                             'region': request.form.get('region'),
-                             'best_rank': request.form.get('best_rank'),
-                             'current_rank': request.form.get('current_rank')
+                             'region': request.form.get('region', current_region),
+                             'best_rank': request.form.get('best_rank', current_brank),
+                             'current_rank': request.form.get('current_rank', current_crank)
                          }})
         return redirect(url_for('user_profile', username=current_user['name']))
 

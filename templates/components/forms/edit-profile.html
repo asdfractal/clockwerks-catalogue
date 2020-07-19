@@ -13,7 +13,7 @@
 		<div class="form-group">
 		<label for="profilePrimaryRole">Region</label>
 			<select class="form-control" id="profilePrimaryRole" name="region">
-				<option value="{{ current_user['region'] }}" selected>{{ current_user['region'] }}</option>
+				<option disabled selected>{{ current_user['region'] }}</option>
 				<option value="Oceania">Oceania</option>
 				<option value="Europe">Europe</option>
 				<option value="CIS">CIS</option>
@@ -25,7 +25,7 @@
 		<div class="form-group">
 		<label for="profileBestRank">Best Rank</label>
 			<select class="form-control" id="profileBestRank" name="best_rank">
-				<option value="{{ current_user['best_rank'] }}" selected>{{ current_user['best_rank'] }}</option>
+				<option disabled selected>{{ current_user['best_rank'] }}</option>
 				<option value="Immortal">Immortal</option>
 				<option value="Divine">Divine</option>
 				<option value="Ancient">Ancient</option>
@@ -39,7 +39,7 @@
 		<div class="form-group">
 		<label for="profileCurrentRank">Current Rank</label>
 			<select class="form-control" id="profileCurrentRank" name="current_rank">
-				<option value="{{ current_user['current_rank'] }}" selected>{{ current_user['current_rank'] }}</option>
+				<option disabled selected>{{ current_user['current_rank'] }}</option>
 				<option value="Immortal">Immortal</option>
 				<option value="Divine">Divine</option>
 				<option value="Ancient">Ancient</option>
