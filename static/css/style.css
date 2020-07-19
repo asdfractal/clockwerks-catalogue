@@ -213,6 +213,15 @@ hr {
 	font-weight: 500;
 }
 
+#avatarModal {
+    padding: 0 !important;
+}
+
+.btn-avatar {
+    border: 0;
+    padding: 0.1rem;
+}
+
 .form-title {
 	font-family: 'Audiowide', cursive;
 	font-size: 3rem;

@@ -1,3 +1,14 @@
+<div class="row">
+    <div class="col-6">
+        <p>Select Avatar</p>
+    </div>
+    <div class="col-6">
+        <a href="#avatarModal" role="button" data-toggle="modal">
+            <img class="" src="{{ current_user['avatar'] }}" alt="{{ current_user['avatar'] }}">
+        </a>
+    </div>
+</div>
+
 <form action="{{ url_for('edit_profile', username=current_user['name']) }}" method="POST">
 	<fieldset>
 		<div class="form-group">
@@ -65,3 +76,32 @@
 		{% endwith %}
 	</fieldset>
 </form>
+
+
+<div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="avatarModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row text-center">
+                        <div class="col-auto">
+                            <form action="{{ url_for('edit_profile', username=current_user['name']) }}" method="POST">
+                            {% for hero in heroes %}
+                                <button class="btn btn-avatar hero-thumbnail" type="submit" name="avatar" value="{{ hero.image_thumb }}"><img src="{{ hero.image_thumb }}" alt=""></button>
+                            {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="row px-2">
+				<div class="col-3 pl-4">
+					<button type="button" class="btn-modal-close" data-dismiss="modal">
+						<i class="far fa-times-circle"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

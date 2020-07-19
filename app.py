@@ -121,7 +121,12 @@ def create_user(username, password):
     USERS.insert_one({
         'name': username,
         'password': password,
-        'favourites': []
+        'favourites': [],
+        'primary_role': '',
+        'region': '',
+        'best_rank': '',
+        'current_rank': '',
+        'avatar': '../static/images/no_avatar.jpg'
     })
 
 
@@ -214,6 +219,7 @@ def edit_profile(username):
     current_region = current_user['region']
     current_brank = current_user['best_rank']
     current_crank = current_user['current_rank']
+    current_avatar = current_user['avatar']
 
     if request.method == 'POST':
         USERS.update_one({'_id': current_user_id},
@@ -221,7 +227,8 @@ def edit_profile(username):
                              'primary_role': request.form.get('primary_role', current_role),
                              'region': request.form.get('region', current_region),
                              'best_rank': request.form.get('best_rank', current_brank),
-                             'current_rank': request.form.get('current_rank', current_crank)
+                             'current_rank': request.form.get('current_rank', current_crank),
+                             'avatar': request.form.get('avatar', current_avatar)
                          }})
         return redirect(url_for('user_profile', username=current_user['name']))
 
@@ -229,7 +236,8 @@ def edit_profile(username):
                            edit_profile=True,
                            main_wrapper='account-main-wrapper',
                            content_wrapper='account-content-wrapper',
-                           current_user=current_user)
+                           current_user=current_user,
+                           heroes=HEROES.find())
 
 
 @APP.errorhandler(404)
