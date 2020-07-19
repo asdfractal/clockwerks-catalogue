@@ -53,7 +53,7 @@ def add_to_favourites(hero_id):
     """
     current_user = USERS.find_one({'name': session['username']})
     USERS.update_one(current_user,
-                              {"$push": {"favourites": ObjectId(hero_id)}})
+                     {"$push": {"favourites": ObjectId(hero_id)}})
     return redirect(url_for('user_list'))
 
 
@@ -64,7 +64,7 @@ def remove_from_favourites(hero_id):
     """
     current_user = USERS.find_one({'name': session['username']})
     USERS.update_one(current_user,
-                              {"$pull": {"favourites": ObjectId(hero_id)}})
+                     {"$pull": {"favourites": ObjectId(hero_id)}})
     return redirect(url_for('user_list'))
 
 
@@ -150,7 +150,7 @@ def create_account():
         else:
             flash('Password does not match, please re-enter.')
 
-    return render_template('pages/user-account.html', title="Create Account",
+    return render_template('pages/account.html', title="Create Account",
                            create_account=True,
                            main_wrapper='account-main-wrapper',
                            content_wrapper='account-content-wrapper')
@@ -172,15 +172,15 @@ def login():
         if current_user:
             current_user_pw = current_user['password']
             check_pw = check_password_hash(current_user_pw, password)
-            if check_pw == True:
+            if check_pw:
                 session['username'] = request.form['username']
                 return redirect(url_for('user_profile', username=username))
-            else:
-                flash('Incorrect password, please try again.')
+
+            flash('Incorrect password, please try again.')
         else:
             flash('That username does not exist.')
 
-    return render_template('pages/user-account.html', title="Login",
+    return render_template('pages/account.html', title="Login",
                            create_account=False,
                            main_wrapper='account-main-wrapper',
                            content_wrapper='account-content-wrapper')
@@ -199,7 +199,7 @@ def logout():
 def user_profile(username):
     current_user = USERS.find_one({'name': session['username']})
 
-    return render_template('pages/user-account.html', title="Profile",
+    return render_template('pages/user-profile.html', title="Profile",
                            edit_profile=False,
                            main_wrapper='account-main-wrapper',
                            content_wrapper='account-content-wrapper',
@@ -223,7 +223,7 @@ def edit_profile(username):
                          }})
         return redirect(url_for('user_profile', username=current_user['name']))
 
-    return render_template('pages/user-account.html', title="Edit Profile",
+    return render_template('pages/user-profile.html', title="Edit Profile",
                            edit_profile=True,
                            main_wrapper='account-main-wrapper',
                            content_wrapper='account-content-wrapper',

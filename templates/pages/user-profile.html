@@ -1,0 +1,10 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="account-box">
+	{% if edit_profile == True %}
+	{% include 'components/forms/edit-profile.html' %}
+	{% else %}
+	{% include 'components/profile.html' %}
+	{% endif %}
+</div>
+{% endblock %}
