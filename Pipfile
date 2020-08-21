@@ -9,10 +9,9 @@ verify_ssl = true
 flask = "*"
 flask-pymongo = "*"
 dnspython = "*"
-autopep8 = "*"
-pep8 = "*"
 pylint = "*"
 pylint-flask = "*"
+black = "==19.10b0"
 
 [requires]
 python_version = "3.8"
