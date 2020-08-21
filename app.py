@@ -6,91 +6,101 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 APP = Flask(__name__)
 
-APP.config['MONGO_DBNAME'] = os.getenv('DBNAME')
-APP.config['MONGO_URI'] = os.getenv('MONGO_URI')
-APP.secret_key = os.getenv('SECRET_KEY')
+APP.config["MONGO_DBNAME"] = os.getenv("DBNAME")
+APP.config["MONGO_URI"] = os.getenv("MONGO_URI")
+APP.secret_key = os.getenv("SECRET_KEY")
 MONGO = PyMongo(APP)
 
 USERS = MONGO.db.users
 HEROES = MONGO.db.heroes
 
 
-@APP.route('/')
+@APP.route("/")
 def index():
     """
     Renders the home page.
     """
-    return render_template('pages/index.html', title='Home',
-                           main_wrapper='index-main-wrapper',
-                           content_wrapper='index-content-wrapper')
+    return render_template(
+        "pages/index.html",
+        title="Home",
+        main_wrapper="index-main-wrapper",
+        content_wrapper="index-content-wrapper",
+    )
 
 
-@APP.route('/heroes')
+@APP.route("/heroes")
 def heroes():
     """
     Renders the page to display all heroes. Checks if a user exists and if so,
     exposes data for the template.
     """
     try:
-        current_user = USERS.find_one({'name': session['username']})
-        current_user_fav = current_user['favourites']
-        return render_template('pages/heroes.html', title='Heroes',
-                               heroes=HEROES.find(),
-                               user_favourites=current_user_fav,
-                               main_wrapper='heroes-main-wrapper',
-                               content_wrapper='heroes-content-wrapper')
+        current_user = USERS.find_one({"name": session["username"]})
+        current_user_fav = current_user["favourites"]
+        return render_template(
+            "pages/heroes.html",
+            title="Heroes",
+            heroes=HEROES.find(),
+            user_favourites=current_user_fav,
+            main_wrapper="heroes-main-wrapper",
+            content_wrapper="heroes-content-wrapper",
+        )
     except:
-        return render_template('pages/heroes.html', title='Heroes',
-                               heroes=HEROES.find(),
-                               main_wrapper='heroes-main-wrapper',
-                               content_wrapper='heroes-content-wrapper')
+        return render_template(
+            "pages/heroes.html",
+            title="Heroes",
+            heroes=HEROES.find(),
+            main_wrapper="heroes-main-wrapper",
+            content_wrapper="heroes-content-wrapper",
+        )
 
 
-@APP.route('/add-to-favourites/<hero_id>', methods=['POST'])
+@APP.route("/add-to-favourites/<hero_id>", methods=["POST"])
 def add_to_favourites(hero_id):
     """
     Adds a hero to the current user's list.
     """
-    current_user = USERS.find_one({'name': session['username']})
-    USERS.update_one(current_user,
-                     {"$push": {"favourites": ObjectId(hero_id)}})
-    return redirect(url_for('user_list'))
+    current_user = USERS.find_one({"name": session["username"]})
+    USERS.update_one(current_user, {"$push": {"favourites": ObjectId(hero_id)}})
+    return redirect(url_for("user_list"))
 
 
-@APP.route('/remove-from-favourites/<hero_id>', methods=['POST'])
+@APP.route("/remove-from-favourites/<hero_id>", methods=["POST"])
 def remove_from_favourites(hero_id):
     """
     Removes a hero from the current user's list.
     """
-    current_user = USERS.find_one({'name': session['username']})
-    USERS.update_one(current_user,
-                     {"$pull": {"favourites": ObjectId(hero_id)}})
-    return redirect(url_for('user_list'))
+    current_user = USERS.find_one({"name": session["username"]})
+    USERS.update_one(current_user, {"$pull": {"favourites": ObjectId(hero_id)}})
+    return redirect(url_for("user_list"))
 
 
-@APP.route('/favourites')
+@APP.route("/favourites")
 def user_list():
     """
     If a user is logged in, renders the page to show their list, otherwise
     redirects to create account page.
     """
     if session:
-        current_user = USERS.find_one({'name': session['username']})
-        current_user_fav_id = current_user['favourites']
+        current_user = USERS.find_one({"name": session["username"]})
+        current_user_fav_id = current_user["favourites"]
         current_user_fav = []
 
         for fav in current_user_fav_id:
-            hero = HEROES.find_one({'_id': fav})
+            hero = HEROES.find_one({"_id": fav})
             current_user_fav.append(hero)
 
-        return render_template('pages/user-list.html', title='Favourites',
-                               heroes=HEROES.find(),
-                               user_favourites_id=current_user_fav_id,
-                               user_favourites=current_user_fav,
-                               main_wrapper='favourites-main-wrapper',
-                               content_wrapper='favourites-content-wrapper')
+        return render_template(
+            "pages/user-list.html",
+            title="Favourites",
+            heroes=HEROES.find(),
+            user_favourites_id=current_user_fav_id,
+            user_favourites=current_user_fav,
+            main_wrapper="favourites-main-wrapper",
+            content_wrapper="favourites-content-wrapper",
+        )
 
-    return redirect(url_for('create_account'))
+    return redirect(url_for("create_account"))
 
 
 def set_password(password):
@@ -111,26 +121,28 @@ def check_user(username):
     """
     Check if user exists in database.
     """
-    return USERS.find_one({'name': request.form['username']})
+    return USERS.find_one({"name": request.form["username"]})
 
 
 def create_user(username, password):
     """
     Create new user in database.
     """
-    USERS.insert_one({
-        'name': username,
-        'password': password,
-        'favourites': [],
-        'primary_role': '',
-        'region': '',
-        'best_rank': '',
-        'current_rank': '',
-        'avatar': '../static/images/no_avatar.jpg'
-    })
+    USERS.insert_one(
+        {
+            "name": username,
+            "password": password,
+            "favourites": [],
+            "primary_role": "",
+            "region": "",
+            "best_rank": "",
+            "current_rank": "",
+            "avatar": "../static/images/no_avatar.jpg",
+        }
+    )
 
 
-@APP.route('/user/create', methods=['GET', 'POST'])
+@APP.route("/user/create", methods=["GET", "POST"])
 def create_account():
     """
     If a user is logged in, renders the page to show their list, otherwise
@@ -138,106 +150,122 @@ def create_account():
     upon form submission.
     """
     if session:
-        return redirect(url_for('user_list'))
+        return redirect(url_for("user_list"))
 
-    if request.method == 'POST':
-        username = request.form['username'].lower()
+    if request.method == "POST":
+        username = request.form["username"].lower()
         user_exists = check_user(username)
-        password = request.form['password']
-        password_confirm = request.form['password_confirm']
+        password = request.form["password"]
+        password_confirm = request.form["password_confirm"]
         if password == password_confirm:
             if user_exists is None:
                 hash_pw = set_password(password)
                 create_user(username, hash_pw)
-                session['username'] = username
-                return redirect(url_for('user_profile', username=username))
-            flash('Username is taken, please try another one.')
+                session["username"] = username
+                return redirect(url_for("user_profile", username=username))
+            flash("Username is taken, please try another one.")
         else:
-            flash('Password does not match, please re-enter.')
+            flash("Password does not match, please re-enter.")
 
-    return render_template('pages/account.html', title="Create Account",
-                           create_account=True,
-                           main_wrapper='account-main-wrapper',
-                           content_wrapper='account-content-wrapper')
+    return render_template(
+        "pages/account.html",
+        title="Create Account",
+        create_account=True,
+        main_wrapper="account-main-wrapper",
+        content_wrapper="account-content-wrapper",
+    )
 
 
-@APP.route('/user/login', methods=['GET', 'POST'])
+@APP.route("/user/login", methods=["GET", "POST"])
 def login():
     """
     If a user is logged in, renders the page to show their list, otherwise
     renders the page to login and handles requests.
     """
     if session:
-        return redirect(url_for('user_list'))
+        return redirect(url_for("user_list"))
 
-    if request.method == 'POST':
-        username = request.form['username'].lower()
-        password = request.form['password']
-        current_user = USERS.find_one({'name': username})
+    if request.method == "POST":
+        username = request.form["username"].lower()
+        password = request.form["password"]
+        current_user = USERS.find_one({"name": username})
         if current_user:
-            current_user_pw = current_user['password']
+            current_user_pw = current_user["password"]
             check_pw = check_password_hash(current_user_pw, password)
             if check_pw:
-                session['username'] = request.form['username']
-                return redirect(url_for('user_profile', username=username))
+                session["username"] = request.form["username"]
+                return redirect(url_for("user_profile", username=username))
 
-            flash('Incorrect password, please try again.')
+            flash("Incorrect password, please try again.")
         else:
-            flash('That username does not exist.')
+            flash("That username does not exist.")
 
-    return render_template('pages/account.html', title="Login",
-                           create_account=False,
-                           main_wrapper='account-main-wrapper',
-                           content_wrapper='account-content-wrapper')
+    return render_template(
+        "pages/account.html",
+        title="Login",
+        create_account=False,
+        main_wrapper="account-main-wrapper",
+        content_wrapper="account-content-wrapper",
+    )
 
 
-@APP.route('/user/logout')
+@APP.route("/user/logout")
 def logout():
     """
     Logs user out by clearing the session and redirects to home page.
     """
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for("index"))
 
 
-@APP.route('/user/<username>')
+@APP.route("/user/<username>")
 def user_profile(username):
-    current_user = USERS.find_one({'name': session['username']})
+    current_user = USERS.find_one({"name": session["username"]})
 
-    return render_template('pages/user-profile.html', title="Profile",
-                           edit_profile=False,
-                           main_wrapper='account-main-wrapper',
-                           content_wrapper='account-content-wrapper',
-                           current_user=current_user)
+    return render_template(
+        "pages/user-profile.html",
+        title="Profile",
+        edit_profile=False,
+        main_wrapper="account-main-wrapper",
+        content_wrapper="account-content-wrapper",
+        current_user=current_user,
+    )
 
 
-@APP.route('/edit/<username>', methods=['GET', 'POST'])
+@APP.route("/edit/<username>", methods=["GET", "POST"])
 def edit_profile(username):
-    current_user = USERS.find_one({'name': session['username']})
-    current_user_id = current_user['_id']
-    current_role = current_user['primary_role']
-    current_region = current_user['region']
-    current_brank = current_user['best_rank']
-    current_crank = current_user['current_rank']
-    current_avatar = current_user['avatar']
+    current_user = USERS.find_one({"name": session["username"]})
+    current_user_id = current_user["_id"]
+    current_role = current_user["primary_role"]
+    current_region = current_user["region"]
+    current_brank = current_user["best_rank"]
+    current_crank = current_user["current_rank"]
+    current_avatar = current_user["avatar"]
 
-    if request.method == 'POST':
-        USERS.update_one({'_id': current_user_id},
-                         {'$set': {
-                             'primary_role': request.form.get('primary_role', current_role),
-                             'region': request.form.get('region', current_region),
-                             'best_rank': request.form.get('best_rank', current_brank),
-                             'current_rank': request.form.get('current_rank', current_crank),
-                             'avatar': request.form.get('avatar', current_avatar)
-                         }})
-        return redirect(url_for('user_profile', username=current_user['name']))
+    if request.method == "POST":
+        USERS.update_one(
+            {"_id": current_user_id},
+            {
+                "$set": {
+                    "primary_role": request.form.get("primary_role", current_role),
+                    "region": request.form.get("region", current_region),
+                    "best_rank": request.form.get("best_rank", current_brank),
+                    "current_rank": request.form.get("current_rank", current_crank),
+                    "avatar": request.form.get("avatar", current_avatar),
+                }
+            },
+        )
+        return redirect(url_for("user_profile", username=current_user["name"]))
 
-    return render_template('pages/user-profile.html', title="Edit Profile",
-                           edit_profile=True,
-                           main_wrapper='account-main-wrapper',
-                           content_wrapper='account-content-wrapper',
-                           current_user=current_user,
-                           heroes=HEROES.find())
+    return render_template(
+        "pages/user-profile.html",
+        title="Edit Profile",
+        edit_profile=True,
+        main_wrapper="account-main-wrapper",
+        content_wrapper="account-content-wrapper",
+        current_user=current_user,
+        heroes=HEROES.find(),
+    )
 
 
 @APP.errorhandler(404)
@@ -246,9 +274,15 @@ def error_page_not_found(error):
     Renders a 404 error page.
     """
     error = str(error)
-    return render_template('pages/error.html', error=error,
-                           main_wrapper='error-main-wrapper',
-                           content_wrapper='error-content-wrapper'), 404
+    return (
+        render_template(
+            "pages/error.html",
+            error=error,
+            main_wrapper="error-main-wrapper",
+            content_wrapper="error-content-wrapper",
+        ),
+        404,
+    )
 
 
 @APP.errorhandler(500)
@@ -257,10 +291,16 @@ def error_internal_server(error):
     Renders a 500 error page.
     """
     error = str(error)
-    return render_template('pages/error.html', error=error,
-                           main_wrapper='error-main-wrapper',
-                           content_wrapper='error-content-wrapper'), 500
+    return (
+        render_template(
+            "pages/error.html",
+            error=error,
+            main_wrapper="error-main-wrapper",
+            content_wrapper="error-content-wrapper",
+        ),
+        500,
+    )
 
 
-if __name__ == '__main__':
-    APP.run(host=os.getenv('IP'), port=os.getenv('PORT'), debug=True)
+if __name__ == "__main__":
+    APP.run(host=os.getenv("IP"), port=os.getenv("PORT"), debug=True)
