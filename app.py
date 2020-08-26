@@ -131,7 +131,7 @@ def check_user(username):
     """
     Check if user exists in database.
     """
-    return USERS.find_one({"name": request.form["username"]})
+    return USERS.find_one({"name": username})
 
 
 def create_user(username, password):
@@ -230,7 +230,7 @@ def logout():
 
 @APP.route("/user/<username>")
 def profile(username):
-    user_profile = USERS.find_one({"name": session["username"]})
+    user_profile = USERS.find_one({"name": username})
 
     return render_template(
         "pages/user-profile.html",
@@ -244,7 +244,7 @@ def profile(username):
 
 @APP.route("/edit/<username>", methods=["GET", "POST"])
 def edit_profile(username):
-    user_profile = USERS.find_one({"name": session["username"]})
+    user_profile = USERS.find_one({"name": username})
     user_id = user_profile["_id"]
     current_role = user_profile["primary_role"]
     current_region = user_profile["region"]
