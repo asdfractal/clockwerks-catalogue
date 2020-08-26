@@ -75,6 +75,16 @@ def remove_from_favourites(hero_id):
     return redirect(url_for("user_list"))
 
 
+@APP.route("/hero/<hero_id>/notes", methods=["POST"])
+def add_hero_note(hero_id):
+    current_user = USERS.find_one({"name": session["username"]})
+    hero_id_str = f'ObjectId("{hero_id}")'
+    notes_obj_key = f"notes.{hero_id_str}"
+    note = request.form.get("note")
+    USERS.update_one(current_user, {"$set": {notes_obj_key: note}})
+    return redirect(url_for("user_list"))
+
+
 @APP.route("/favourites")
 def user_list():
     """
