@@ -35,13 +35,13 @@ def heroes():
     exposes data for the template.
     """
     try:
-        current_user = USERS.find_one({"name": session["username"]})
-        current_user_fav = current_user["favourites"]
+        user_profile = USERS.find_one({"name": session["username"]})
+        user_favourites = user_profile["favourites"]
         return render_template(
             "pages/heroes.html",
             title="Heroes",
             heroes=HEROES.find(),
-            user_favourites=current_user_fav,
+            user_favourites=user_favourites,
             main_wrapper="heroes-main-wrapper",
             content_wrapper="heroes-content-wrapper",
         )
@@ -60,8 +60,8 @@ def add_to_favourites(hero_id):
     """
     Adds a hero to the current user's list.
     """
-    current_user = USERS.find_one({"name": session["username"]})
-    USERS.update_one(current_user, {"$push": {"favourites": ObjectId(hero_id)}})
+    user_profile = USERS.find_one({"name": session["username"]})
+    USERS.update_one(user_profile, {"$push": {"favourites": ObjectId(hero_id)}})
     return redirect(url_for("user_list"))
 
 
@@ -70,18 +70,18 @@ def remove_from_favourites(hero_id):
     """
     Removes a hero from the current user's list.
     """
-    current_user = USERS.find_one({"name": session["username"]})
-    USERS.update_one(current_user, {"$pull": {"favourites": ObjectId(hero_id)}})
+    user_profile = USERS.find_one({"name": session["username"]})
+    USERS.update_one(user_profile, {"$pull": {"favourites": ObjectId(hero_id)}})
     return redirect(url_for("user_list"))
 
 
 @APP.route("/hero/<hero_id>/notes", methods=["POST"])
 def add_hero_note(hero_id):
-    current_user = USERS.find_one({"name": session["username"]})
+    user_profile = USERS.find_one({"name": session["username"]})
     hero_id_str = f'ObjectId("{hero_id}")'
     notes_obj_key = f"notes.{hero_id_str}"
     note = request.form.get("note")
-    USERS.update_one(current_user, {"$set": {notes_obj_key: note}})
+    USERS.update_one(user_profile, {"$set": {notes_obj_key: note}})
     return redirect(url_for("user_list"))
 
 
@@ -92,20 +92,20 @@ def user_list():
     redirects to create account page.
     """
     if session:
-        current_user = USERS.find_one({"name": session["username"]})
-        current_user_fav_id = current_user["favourites"]
-        current_user_fav = []
+        user_profile = USERS.find_one({"name": session["username"]})
+        user_favourites_id = user_profile["favourites"]
+        user_favourites = []
 
-        for fav in current_user_fav_id:
+        for fav in user_favourites_id:
             hero = HEROES.find_one({"_id": fav})
-            current_user_fav.append(hero)
+            user_favourites.append(hero)
 
         return render_template(
             "pages/user-list.html",
             title="Favourites",
             heroes=HEROES.find(),
-            user_favourites_id=current_user_fav_id,
-            user_favourites=current_user_fav,
+            user_favourites_id=user_favourites_id,
+            user_favourites=user_favourites,
             main_wrapper="favourites-main-wrapper",
             content_wrapper="favourites-content-wrapper",
         )
@@ -172,7 +172,7 @@ def create_account():
                 hash_pw = set_password(password)
                 create_user(username, hash_pw)
                 session["username"] = username
-                return redirect(url_for("user_profile", username=username))
+                return redirect(url_for("profile", username=username))
             flash("Username is taken, please try another one.")
         else:
             flash("Password does not match, please re-enter.")
@@ -198,13 +198,13 @@ def login():
     if request.method == "POST":
         username = request.form["username"].lower()
         password = request.form["password"]
-        current_user = USERS.find_one({"name": username})
-        if current_user:
-            current_user_pw = current_user["password"]
-            check_pw = check_password_hash(current_user_pw, password)
+        user_profile = USERS.find_one({"name": username})
+        if user_profile:
+            user_pw = user_profile["password"]
+            check_pw = check_password_hash(user_pw, password)
             if check_pw:
                 session["username"] = request.form["username"]
-                return redirect(url_for("user_profile", username=username))
+                return redirect(url_for("profile", username=username))
 
             flash("Incorrect password, please try again.")
         else:
@@ -229,8 +229,8 @@ def logout():
 
 
 @APP.route("/user/<username>")
-def user_profile(username):
-    current_user = USERS.find_one({"name": session["username"]})
+def profile(username):
+    user_profile = USERS.find_one({"name": session["username"]})
 
     return render_template(
         "pages/user-profile.html",
@@ -238,23 +238,23 @@ def user_profile(username):
         edit_profile=False,
         main_wrapper="account-main-wrapper",
         content_wrapper="account-content-wrapper",
-        current_user=current_user,
+        user_profile=user_profile,
     )
 
 
 @APP.route("/edit/<username>", methods=["GET", "POST"])
 def edit_profile(username):
-    current_user = USERS.find_one({"name": session["username"]})
-    current_user_id = current_user["_id"]
-    current_role = current_user["primary_role"]
-    current_region = current_user["region"]
-    current_brank = current_user["best_rank"]
-    current_crank = current_user["current_rank"]
-    current_avatar = current_user["avatar"]
+    user_profile = USERS.find_one({"name": session["username"]})
+    user_id = user_profile["_id"]
+    current_role = user_profile["primary_role"]
+    current_region = user_profile["region"]
+    current_brank = user_profile["best_rank"]
+    current_crank = user_profile["current_rank"]
+    current_avatar = user_profile["avatar"]
 
     if request.method == "POST":
         USERS.update_one(
-            {"_id": current_user_id},
+            {"_id": user_id},
             {
                 "$set": {
                     "primary_role": request.form.get("primary_role", current_role),
@@ -265,7 +265,7 @@ def edit_profile(username):
                 }
             },
         )
-        return redirect(url_for("user_profile", username=current_user["name"]))
+        return redirect(url_for("profile", username=user_profile["name"]))
 
     return render_template(
         "pages/user-profile.html",
@@ -273,7 +273,7 @@ def edit_profile(username):
         edit_profile=True,
         main_wrapper="account-main-wrapper",
         content_wrapper="account-content-wrapper",
-        current_user=current_user,
+        user_profile=user_profile,
         heroes=HEROES.find(),
     )
 

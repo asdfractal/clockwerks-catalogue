@@ -4,104 +4,105 @@
     </div>
     <div class="col-6">
         <a href="#avatarModal" role="button" data-toggle="modal">
-            <img class="" src="{{ current_user['avatar'] }}" alt="{{ current_user['avatar'] }}">
+            <img class="" src="{{ user_profile['avatar'] }}" alt="{{ user_profile['avatar'] }}">
         </a>
     </div>
 </div>
 
-<form action="{{ url_for('edit_profile', username=current_user['name']) }}" method="POST">
-	<fieldset>
-		<div class="form-group">
-		<label for="profilePrimaryRole">Primary role</label>
-		<select class="form-control" id="profilePrimaryRole" name="primary_role">
-			<option disabled selected>Current role: {{ current_user['primary_role'] }}</option>
-			<option value="Carry">Carry</option>
-			<option value="Support">Support</option>
-			<option value="Offlane">Offlane</option>
-			<option Value="Roamer">Roamer</option>
-		</select>
-		</div>
-		<div class="form-group">
-		<label for="profilePrimaryRole">Region</label>
-			<select class="form-control" id="profilePrimaryRole" name="region">
-				<option disabled selected>{{ current_user['region'] }}</option>
-				<option value="Oceania">Oceania</option>
-				<option value="Europe">Europe</option>
-				<option value="CIS">CIS</option>
-				<option value="China">China</option>
-				<option Value="North America">North America</option>
-				<option Value="South America">South America</option>
-			</select>
-		</div>
-		<div class="form-group">
-		<label for="profileBestRank">Best Rank</label>
-			<select class="form-control" id="profileBestRank" name="best_rank">
-				<option disabled selected>{{ current_user['best_rank'] }}</option>
-				<option value="Immortal">Immortal</option>
-				<option value="Divine">Divine</option>
-				<option value="Ancient">Ancient</option>
-				<option value="Legend">Legend</option>
-				<option Value="Archon">Archon</option>
-				<option Value="Crusader">Crusader</option>
-				<option Value="Guardian">Guardian</option>
-				<option Value="Herald">Herald</option>
-			</select>
-		</div>
-		<div class="form-group">
-		<label for="profileCurrentRank">Current Rank</label>
-			<select class="form-control" id="profileCurrentRank" name="current_rank">
-				<option disabled selected>{{ current_user['current_rank'] }}</option>
-				<option value="Immortal">Immortal</option>
-				<option value="Divine">Divine</option>
-				<option value="Ancient">Ancient</option>
-				<option value="Legend">Legend</option>
-				<option Value="Archon">Archon</option>
-				<option Value="Crusader">Crusader</option>
-				<option Value="Guardian">Guardian</option>
-				<option Value="Herald">Herald</option>
-			</select>
-		</div>
-			
-		
+<form action="{{ url_for('edit_profile', username=user_profile['name']) }}" method="POST">
+    <fieldset>
+        <div class="form-group">
+            <label for="profilePrimaryRole">Primary role</label>
+            <select class="form-control" id="profilePrimaryRole" name="primary_role">
+                <option disabled selected>Current role: {{ user_profile['primary_role'] }}</option>
+                <option value="Carry">Carry</option>
+                <option value="Support">Support</option>
+                <option value="Offlane">Offlane</option>
+                <option Value="Roamer">Roamer</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="profilePrimaryRole">Region</label>
+            <select class="form-control" id="profilePrimaryRole" name="region">
+                <option disabled selected>{{ user_profile['region'] }}</option>
+                <option value="Oceania">Oceania</option>
+                <option value="Europe">Europe</option>
+                <option value="CIS">CIS</option>
+                <option value="China">China</option>
+                <option Value="North America">North America</option>
+                <option Value="South America">South America</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="profileBestRank">Best Rank</label>
+            <select class="form-control" id="profileBestRank" name="best_rank">
+                <option disabled selected>{{ user_profile['best_rank'] }}</option>
+                <option value="Immortal">Immortal</option>
+                <option value="Divine">Divine</option>
+                <option value="Ancient">Ancient</option>
+                <option value="Legend">Legend</option>
+                <option Value="Archon">Archon</option>
+                <option Value="Crusader">Crusader</option>
+                <option Value="Guardian">Guardian</option>
+                <option Value="Herald">Herald</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="profileCurrentRank">Current Rank</label>
+            <select class="form-control" id="profileCurrentRank" name="current_rank">
+                <option disabled selected>{{ user_profile['current_rank'] }}</option>
+                <option value="Immortal">Immortal</option>
+                <option value="Divine">Divine</option>
+                <option value="Ancient">Ancient</option>
+                <option value="Legend">Legend</option>
+                <option Value="Archon">Archon</option>
+                <option Value="Crusader">Crusader</option>
+                <option Value="Guardian">Guardian</option>
+                <option Value="Herald">Herald</option>
+            </select>
+        </div>
 
-		<div class="form-group">
-			<button class="btn form-btn float-right">Submit</button>
-		</div>
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		{% for message in messages %}
-		<p class="form-message-error">{{ message }}</p>
-		{% endfor %}
-		{% endif %}
-		{% endwith %}
-	</fieldset>
+
+
+        <div class="form-group">
+            <button class="btn form-btn float-right">Submit</button>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="form-message-error">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </fieldset>
 </form>
 
 
 <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="avatarModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-body">
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row text-center">
                         <div class="col-auto">
-                            <form action="{{ url_for('edit_profile', username=current_user['name']) }}" method="POST">
-                            {% for hero in heroes %}
-                                <button class="btn btn-avatar hero-thumbnail" type="submit" name="avatar" value="{{ hero.image_thumb }}"><img src="{{ hero.image_thumb }}" alt=""></button>
-                            {% endfor %}
+                            <form action="{{ url_for('edit_profile', username=user_profile['name']) }}" method="POST">
+                                {% for hero in heroes %}
+                                <button class="btn btn-avatar hero-thumbnail" type="submit" name="avatar"
+                                    value="{{ hero.image_thumb }}"><img src="{{ hero.image_thumb }}" alt=""></button>
+                                {% endfor %}
                             </form>
                         </div>
                     </div>
                 </div>
-			</div>
-			<div class="row px-2">
-				<div class="col-3 pl-4">
-					<button type="button" class="btn-modal-close" data-dismiss="modal">
-						<i class="far fa-times-circle"></i>
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+            </div>
+            <div class="row px-2">
+                <div class="col-3 pl-4">
+                    <button type="button" class="btn-modal-close" data-dismiss="modal">
+                        <i class="far fa-times-circle"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
