@@ -55,7 +55,7 @@ def heroes():
         )
 
 
-@APP.route("/add-to-favourites/<hero_id>", methods=["POST"])
+@APP.route("/add/<hero_id>", methods=["POST"])
 def add_to_favourites(hero_id):
     """
     Adds a hero to the current user's list.
@@ -65,7 +65,7 @@ def add_to_favourites(hero_id):
     return redirect(url_for("user_list"))
 
 
-@APP.route("/remove-from-favourites/<hero_id>", methods=["POST"])
+@APP.route("/remove/<hero_id>", methods=["POST"])
 def remove_from_favourites(hero_id):
     """
     Removes a hero from the current user's list.
@@ -75,7 +75,7 @@ def remove_from_favourites(hero_id):
     return redirect(url_for("user_list"))
 
 
-@APP.route("/hero/<hero_id>/notes", methods=["POST"])
+@APP.route("/notes/<hero_id>", methods=["POST"])
 def add_hero_note(hero_id):
     user_profile = USERS.find_one({"name": session["username"]})
     hero_id_str = f'ObjectId("{hero_id}")'
