@@ -61,7 +61,10 @@ def add_to_favourites(hero_id):
     Adds a hero to the current user's list.
     """
     user_profile = USERS.find_one({"name": session["username"]})
-    USERS.update_one(user_profile, {"$push": {"favourites": ObjectId(hero_id)}})
+    # USERS.update_one(user_profile, {"$set": {"favourites.$": ObjectId(hero_id)}})
+    USERS.update_one(
+        user_profile, {"$push": {"favourites": {"hero": ObjectId(hero_id)}}},
+    )
     return redirect(url_for("user_list"))
 
 
@@ -95,10 +98,20 @@ def user_list():
         user_profile = USERS.find_one({"name": session["username"]})
         user_favourites_id = user_profile["favourites"]
         user_favourites = []
+        test_dict = {}
+        # user_notes = user_profile["notes"]
 
-        for fav in user_favourites_id:
-            hero = HEROES.find_one({"_id": fav})
-            user_favourites.append(hero)
+        # for fav in user_favourites_id:
+        #     for hero_id, note in user_notes.items():
+        #         if fav == hero_id:
+        #             test_dict[hero_id] = note
+        #         else:
+        #             test_dict[hero_id] = "0"
+
+        # users.updateOne(user2, {"$push": {"favourites" : { "hero2": "obj_id", "note": "note text" } } })
+        print(test_dict)
+        # hero = HEROES.find_one({"_id": fav})
+        # user_favourites.append(hero)
 
         return render_template(
             "pages/user-list.html",
