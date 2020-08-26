@@ -61,7 +61,6 @@ def add_to_favourites(hero_id):
     Adds a hero to the current user's list.
     """
     user_profile = USERS.find_one({"name": session["username"]})
-    # USERS.update_one(user_profile, {"$set": {"favourites.$": ObjectId(hero_id)}})
     USERS.update_one(
         user_profile, {"$push": {"favourites": {"hero": ObjectId(hero_id)}}},
     )
@@ -74,17 +73,24 @@ def remove_from_favourites(hero_id):
     Removes a hero from the current user's list.
     """
     user_profile = USERS.find_one({"name": session["username"]})
-    USERS.update_one(user_profile, {"$pull": {"favourites": ObjectId(hero_id)}})
+    USERS.update_one(
+        user_profile, {"$pull": {"favourites": {"hero": ObjectId(hero_id)}}}
+    )
     return redirect(url_for("user_list"))
 
 
-@APP.route("/notes/<hero_id>", methods=["POST"])
+@APP.route("/note/add/<hero_id>", methods=["POST"])
 def add_hero_note(hero_id):
+    user_id = ""
     user_profile = USERS.find_one({"name": session["username"]})
-    hero_id_str = f'ObjectId("{hero_id}")'
-    notes_obj_key = f"notes.{hero_id_str}"
     note = request.form.get("note")
-    USERS.update_one(user_profile, {"$set": {notes_obj_key: note}})
+    for key in user_profile:
+        if key == "_id":
+            user_id = user_profile[key]
+    USERS.update_one(
+        {"_id": ObjectId(user_id), "favourites.hero": ObjectId(hero_id)},
+        {"$set": {"favourites.$.note": note}},
+    )
     return redirect(url_for("user_list"))
 
 
@@ -96,28 +102,26 @@ def user_list():
     """
     if session:
         user_profile = USERS.find_one({"name": session["username"]})
-        user_favourites_id = user_profile["favourites"]
+        raw_favourites = user_profile["favourites"]
         user_favourites = []
-        test_dict = {}
-        # user_notes = user_profile["notes"]
+        for fav in raw_favourites:
+            hero_id = fav["hero"]
+            hero = HEROES.find_one({"_id": hero_id})
+            try:
+                note = fav["note"]
+                hero["note"] = note
+                user_favourites.append(hero)
+            except KeyError:
+                hero["note"] = ""
+                user_favourites.append(hero)
+        print(user_favourites)
 
-        # for fav in user_favourites_id:
-        #     for hero_id, note in user_notes.items():
-        #         if fav == hero_id:
-        #             test_dict[hero_id] = note
-        #         else:
-        #             test_dict[hero_id] = "0"
-
-        # users.updateOne(user2, {"$push": {"favourites" : { "hero2": "obj_id", "note": "note text" } } })
-        print(test_dict)
-        # hero = HEROES.find_one({"_id": fav})
-        # user_favourites.append(hero)
+        for fav in user_favourites:
+            print(fav["note"])
 
         return render_template(
             "pages/user-list.html",
             title="Favourites",
-            heroes=HEROES.find(),
-            user_favourites_id=user_favourites_id,
             user_favourites=user_favourites,
             main_wrapper="favourites-main-wrapper",
             content_wrapper="favourites-content-wrapper",
