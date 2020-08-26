@@ -94,6 +94,20 @@ def add_hero_note(hero_id):
     return redirect(url_for("user_list"))
 
 
+@APP.route("/note/remove/<hero_id>")
+def remove_hero_note(hero_id):
+    user_id = ""
+    user_profile = USERS.find_one({"name": session["username"]})
+    for key in user_profile:
+        if key == "_id":
+            user_id = user_profile[key]
+    USERS.update_one(
+        {"_id": ObjectId(user_id), "favourites.hero": ObjectId(hero_id)},
+        {"$unset": {"favourites.$.note": ""}},
+    )
+    return redirect(url_for("user_list"))
+
+
 @APP.route("/favourites")
 def user_list():
     """
