@@ -1,5 +1,13 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import (
+    Flask,
+    render_template,
+    redirect,
+    request,
+    url_for,
+    session,
+    flash,
+)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -36,7 +44,10 @@ def heroes():
     """
     try:
         user_profile = USERS.find_one({"name": session["username"]})
-        user_favourites = user_profile["favourites"]
+        raw_favourites = user_profile["favourites"]
+        user_favourites = []
+        for fav in raw_favourites:
+            user_favourites.append(fav["hero"])
         return render_template(
             "pages/heroes.html",
             title="Heroes",
@@ -67,7 +78,7 @@ def add_to_favourites(hero_id):
     return redirect(url_for("user_list"))
 
 
-@APP.route("/remove/<hero_id>", methods=["POST"])
+@APP.route("/remove/<hero_id>")
 def remove_from_favourites(hero_id):
     """
     Removes a hero from the current user's list.
@@ -179,6 +190,7 @@ def create_user(username, password):
             "best_rank": "",
             "current_rank": "",
             "avatar": "../static/images/no_avatar.jpg",
+            "biography": "",
         }
     )
 
@@ -282,6 +294,7 @@ def edit_profile(username):
     current_brank = user_profile["best_rank"]
     current_crank = user_profile["current_rank"]
     current_avatar = user_profile["avatar"]
+    current_biography = user_profile["biography"]
 
     if request.method == "POST":
         USERS.update_one(
@@ -293,6 +306,7 @@ def edit_profile(username):
                     "best_rank": request.form.get("best_rank", current_brank),
                     "current_rank": request.form.get("current_rank", current_crank),
                     "avatar": request.form.get("avatar", current_avatar),
+                    "biography": request.form.get("biography", current_biography),
                 }
             },
         )
