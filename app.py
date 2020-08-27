@@ -381,4 +381,4 @@ def error_internal_server(error):
 
 
 if __name__ == "__main__":
-    APP.run(host=os.getenv("IP"), port=os.getenv("PORT"), debug=True)
+    APP.run(host=os.getenv("IP"), port=os.getenv("PORT"), debug=False)
