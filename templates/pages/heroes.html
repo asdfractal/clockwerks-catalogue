@@ -132,12 +132,11 @@
 			{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr)}}
 			{% if hero._id in user_favourites %}
 			<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
-				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail is_favourite"
-					id="{{ hero.id }}">
+				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="border-color-gold" id="{{ hero.id }}">
 			</a>
 			{% else %}
 			<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
-				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero_thumbnail" id="{{ hero.id }}">
+				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="border-not-favourite" id="{{ hero.id }}">
 			</a>
 			{% endif %}
 		</div>
