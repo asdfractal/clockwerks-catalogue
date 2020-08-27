@@ -9,11 +9,11 @@
 	</div>
 </div>
 <div class="d-flex justify-content-center">
-	<a class="btn btn-primary index-btn index-heroes-btn mx-2" href="{{url_for('heroes')}}">Heroes</a>
+	<a class="btn btn-primary index-btn border-color-dota mx-2" href="{{url_for('heroes')}}">Heroes</a>
 	{% if session['username'] %}
-	<a class="btn index-btn index-account-btn mx-2" href="{{url_for('login')}}">Favourites</a>
+	<a class="btn index-btn bg-color-pink mx-2" href="{{url_for('user_list')}}">Favourites</a>
 	{% else %}
-	<a class="btn index-btn index-account-btn mx-2" href="{{url_for('login')}}">Sign In</a>
+	<a class="btn index-btn bg-color-pink mx-2" href="{{url_for('login')}}">Sign In</a>
 	{% endif %}
 </div>
 {% endblock %}
