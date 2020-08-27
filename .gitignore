@@ -1,4 +1,6 @@
-test.md
-heroes.json
-test.py
 .vscode
+.dev-files
+.prettierrc
+.prettierignore
+.jshintrc
+.editorconfig
