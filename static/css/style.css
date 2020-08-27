@@ -1,5 +1,8 @@
+@charset "UTF-8"
+
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Lato:wght@300;400;500&display=swap');
 
+/* Base styles and resets */
 html {
 	height: 100%;
 	font-size: 62.5%;
@@ -13,12 +16,18 @@ body {
 }
 
 button {
-    outline: none !important;
-    box-shadow: none !important;
+	outline: none !important;
+	box-shadow: none !important;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-    margin: 0;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
 }
 
 hr {
@@ -26,8 +35,62 @@ hr {
 	border-top: 1px rgba(240, 239, 244, 0.5) solid;
 }
 
+/* Utility classes */
+.color-primary {
+	color: #9E2F19 !important;
+}
+
+.icon-small {
+	font-size: 2.5rem;
+}
+
+.icon-large {
+	font-size: 3.5rem;
+}
+
+/* Components */
+.form-title {
+	font-family: 'Audiowide', cursive;
+	font-size: 3rem;
+	text-align: center;
+	color: #9E2F19;
+}
+
+.form-control {
+	font-size: 1.4rem;
+}
+
+.form-btn {
+	width: 100px;
+	height: 40px;
+	background: #9E2F19;
+	font-size: 1.8rem;
+}
+
+.form-btn-create {
+	width: 100px;
+	height: 40px;
+	border: #9E2F19 1.5px solid;
+	font-size: 1.6rem;
+}
+
+.text-link-color {
+	color: #9E2F19;
+}
+
+.form-message-error {
+	font-size: 1.4rem;
+	color: red;
+}
+
+/* Header/Navbar */
 .navbar .nav-link {
-	border: 0;
+	border: none;
+}
+
+.navbar .nav-item.active .nav-link {
+	background-color: transparent;
+	border: none;
 }
 
 .navbar-brand {
@@ -48,6 +111,7 @@ hr {
 	border: 0;
 }
 
+/* Footer */
 .footer-wrapper {
 	height: 7vh;
 }
@@ -58,6 +122,7 @@ hr {
 	margin-top: 0.5rem;
 }
 
+/* Index page */
 .index-main-wrapper {
 	background: url('/static/images/bg_clockwerk.jfif') no-repeat center center;
 	-webkit-background-size: cover;
@@ -96,6 +161,7 @@ hr {
 	color: #F0EFF4;
 }
 
+/* Heroes page */
 .heroes-content-wrapper {
 	margin-top: 10vh;
 	margin-bottom: 10vh;
@@ -154,9 +220,8 @@ hr {
 	color: #9E2F19;
 }
 
-.favourites-main-wrapper {
-
-}
+/* Favourites page */
+.favourites-main-wrapper {}
 
 .favourites-content-wrapper {
 	margin-top: 10vh;
@@ -173,7 +238,7 @@ hr {
 	font-family: 'Audiowide', cursive;
 	text-align: center;
 	text-transform: uppercase;
-	color:#9E2F19;
+	color: #9E2F19;
 }
 
 .favourites-title:after {
@@ -189,6 +254,11 @@ hr {
 	padding: 0 0.8rem;
 }
 
+.favourites-notes__hidden {
+	display: none;
+}
+
+/* Account page */
 .account-main-wrapper {
 	margin-top: 20vh;
 	margin-bottom: 10vh;
@@ -203,6 +273,7 @@ hr {
 	padding: 1rem 0.8rem;
 }
 
+/* Profile page */
 .profile-title-text {
 	font-family: 'Audiowide', cursive;
 	font-size: 2.5rem;
@@ -213,49 +284,20 @@ hr {
 	font-weight: 500;
 }
 
+.profile-biography {
+	white-space: pre-line;
+}
+
 #avatarModal {
-    padding: 0 !important;
+	padding: 0 !important;
 }
 
 .btn-avatar {
-    border: 0;
-    padding: 0.1rem;
+	border: 0;
+	padding: 0.1rem;
 }
 
-.form-title {
-	font-family: 'Audiowide', cursive;
-	font-size: 3rem;
-	text-align: center;
-	color:#9E2F19;
-}
-
-.form-control {
-	font-size: 1.4rem;
-}
-
-.form-btn {
-	width: 100px;
-	height: 40px;
-	background: #9E2F19;
-	font-size: 1.8rem;
-}
-
-.form-btn-create {
-	width: 100px;
-	height: 40px;
-	border: #9E2F19 1.5px solid;
-	font-size: 1.6rem;
-}
-
-.text-link-color {
-	color: #9E2F19;
-}
-
-.form-message-error {
-	font-size: 1.4rem;
-	color: red;
-}
-
+/* Error pages */
 .error-main-wrapper {
 	background: url('/static/images/bg_clockwerk.jfif') no-repeat center center;
 	-webkit-background-size: cover;
@@ -277,13 +319,16 @@ hr {
 	padding: 1rem 0.8rem;
 }
 
+/* Media queries */
 @media only screen and (min-width: 321px) {
 	.heroes-content-wrapper {
 		padding: 1rem 4vw;
 	}
+
 	.favourites-content-wrapper {
 		padding: 1rem 4vw;
 	}
+
 	.favourites-box {
 		padding: 0 0.5rem;
 	}
@@ -294,24 +339,31 @@ hr {
 		font-size: 1.3rem;
 		padding-top: 1rem;
 	}
+
 	.index-btn {
 		width: 20vw;
 	}
+
 	.index-content-wrapper {
 		padding: 0 15vw;
 	}
+
 	.heroes-content-wrapper {
 		padding: 1rem 8vw;
 	}
+
 	.heroes-box {
 		padding: 1rem 0.5rem;
 	}
+
 	.favourites-content-wrapper {
 		padding: 1rem 18vw;
 	}
+
 	.favourites-box {
 		padding: 0.8rem 1.5rem;
 	}
+
 	.account-content-wrapper {
 		padding: 0 15vw;
 	}
@@ -321,12 +373,15 @@ hr {
 	.heroes-content-wrapper {
 		padding: 1rem 10vw 0 12vw;
 	}
+
 	.favourites-content-wrapper {
 		padding: 1rem 22vw;
 	}
+
 	.account-content-wrapper {
 		padding: 0 20vw;
 	}
+
 	.account-box {
 		padding: 1rem 1.5rem;
 	}
@@ -339,55 +394,70 @@ hr {
 		padding-top: 2rem;
 		padding-left: 1.2rem;
 	}
+
 	.footer-text {
 		font-size: 1.6rem;
 		padding-top: 1rem;
 	}
+
 	.index-btn {
 		width: 17vw;
 	}
+
 	.index-content-wrapper {
 		padding: 0 10vw;
 	}
+
 	.index-title-wrapper {
 		padding-bottom: 5rem;
 	}
+
 	.index-title-text {
 		padding-bottom: 2rem;
 	}
+
 	.heroes-content-wrapper {
 		padding: 1rem 10vw;
 	}
+
 	.heroes-box {
 		padding: 2rem 0.5rem;
 	}
+
 	.favourites-content-wrapper {
 		padding: 1rem 27vw;
 	}
+
 	.account-content-wrapper {
 		padding: 0 25vw;
 	}
 }
 
 @media only screen and (min-width: 992px) {
-	.index-title-text  {
+	.index-title-text {
 		font-size: 4rem;
 	}
+
 	.index-title-subtext {
 		font-size: 2.8rem;
 	}
+
 	.index-btn {
 		font-size: 2.4rem;
 	}
+
 	.heroes-content-wrapper {
 		padding: 1rem 9vw;
 	}
+
 	.heroes-box {
 		padding: 2rem 1.5rem;
 	}
+
 	.favourites-content-wrapper {
 		padding: 1rem 33vw;
 	}
+
 	.account-content-wrapper {
 		padding: 0 30vw;
 	}
@@ -397,10 +467,12 @@ hr {
 	.index-btn {
 		width: 14vw;
 	}
+
 	.heroes-content-wrapper {
 		padding: 1rem 15vw;
 	}
+
 	.account-content-wrapper {
-		padding: 0 35vw;
+		padding: 0 32vw;
 	}
 }
