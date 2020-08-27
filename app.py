@@ -69,7 +69,7 @@ def heroes():
 @APP.route("/add/<hero_id>")
 def add_to_favourites(hero_id):
     """
-    Adds a hero to the current user's list.
+    Adds a hero to the user's list.
     """
     user_profile = USERS.find_one({"name": session["username"]})
     hero = HEROES.find_one({"_id": ObjectId(hero_id)})
@@ -86,7 +86,7 @@ def add_to_favourites(hero_id):
 @APP.route("/remove/<hero_id>", methods=["GET", "POST"])
 def remove_from_favourites(hero_id):
     """
-    Removes a hero from the current user's list.
+    Removes a hero from the user's list.
     """
     user_profile = USERS.find_one({"name": session["username"]})
     hero = HEROES.find_one({"_id": ObjectId(hero_id)})
@@ -104,6 +104,9 @@ def remove_from_favourites(hero_id):
 
 @APP.route("/note/add/<hero_id>", methods=["POST"])
 def add_hero_note(hero_id):
+    """
+    Adds a note to a hero in the user's list.
+    """
     user_id = ""
     user_profile = USERS.find_one({"name": session["username"]})
     note = request.form.get("note")
@@ -120,6 +123,9 @@ def add_hero_note(hero_id):
 
 @APP.route("/note/remove/<hero_id>")
 def remove_hero_note(hero_id):
+    """
+    Removes a note from a hero in the user's list.
+    """
     user_id = ""
     user_profile = USERS.find_one({"name": session["username"]})
     for key in user_profile:
@@ -208,7 +214,7 @@ def create_user(username, password):
 @APP.route("/user/create", methods=["GET", "POST"])
 def create_account():
     """
-    If a user is logged in, renders the page to show their list, otherwise
+    If a user is logged in, redirects to the page to show their list, otherwise
     renders the page to create account and creates a new user in the database
     upon form submission.
     """
@@ -283,6 +289,9 @@ def logout():
 
 @APP.route("/user/<username>")
 def profile(username):
+    """
+    Displays the user's profile page.
+    """
     user_profile = USERS.find_one({"name": username})
 
     return render_template(
@@ -297,6 +306,9 @@ def profile(username):
 
 @APP.route("/edit/<username>", methods=["GET", "POST"])
 def edit_profile(username):
+    """
+    Display a page to edit and update profile information.
+    """
     user_profile = USERS.find_one({"name": username})
     user_id = user_profile["_id"]
     current_role = user_profile["primary_role"]
