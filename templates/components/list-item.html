@@ -1,0 +1,28 @@
+<div class="row m-0">
+	<div class="col-9 my-auto" id="{{fav.id}}-toggler">
+		<span class="pl-1 pr-3"><i class="fas fa-caret-down icon-small pl-3"></i></span>
+		<img src="{{fav.image_thumb}}" alt="{{fav.name}}">
+	</div>
+	<div class="col-3 text-right">
+		<form action="{{url_for('remove_from_favourites', hero_id=fav._id)}}" method="POST">
+			<button href="" class="color-gold icon-large border-0 bg-transparent" name="from_profile">
+				<i class="fas fa-heart"></i>
+			</button>
+		</form>
+	</div>
+</div>
+<div class="row m-0 pb-3 favourites-notes__hidden" id="{{fav.id}}">
+	<div class="col-12">
+		<p>{{ fav.name }} - Personal notes</p>
+	</div>
+	<form action="{{ url_for('add_hero_note', hero_id=fav._id) }}" method="POST" class="w-100">
+		<div class="col-12">
+			<textarea type="text" name="note" class="w-100">{{ fav.note }}</textarea>
+		</div>
+		<div class="col-12">
+			<a href="{{ url_for('remove_hero_note', hero_id=fav._id) }}"
+				class="btn btn-primary border-color-dota button-sm">Delete</a>
+			<button class="btn bg-color-pink button-sm float-right" type="submit">Save</button>
+		</div>
+	</form>
+</div>
