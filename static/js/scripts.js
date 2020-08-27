@@ -8,6 +8,40 @@ $(".toast-close").click(() => {
 	$(".toast").toast("hide")
 })
 
+const queryApi = async (query) => {
+	const queryUrl = `/api/?attr=${query}`
+	const res = await fetch(queryUrl)
+	data = await res.json()
+	return data
+}
+
+const processData = async (query) => {
+	data = await queryApi(query)
+	const dataValues = []
+	for (const id of Object.values(data)) {
+		dataValues.push(id)
+	}
+	console.log(dataValues)
+	return dataValues
+}
+
+const filterHeroes = (heroes) => {
+	$(".hero-thumbnail").hide()
+	heroes.forEach((id) => {
+		$(`#${id}`).parent().parent().show()
+	})
+}
+
+document.querySelectorAll(".js-filter-button").forEach((element) => {
+	element.addEventListener("click", async function () {
+		console.log(this.id)
+		query = this.id
+
+		filteredHeroes = await processData(query)
+		filterHeroes(filteredHeroes)
+	})
+})
+
 heroIds.forEach((id) => {
 	$(`#${id}-toggler`).click(() => {
 		$(`#${id}`).toggle()
