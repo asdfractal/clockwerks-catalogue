@@ -14,10 +14,12 @@
 		</section>
 	</main>
 
-	{% with messages = get_flashed_messages() %}
+	{% with messages = get_flashed_messages(category_filter=["message"]) %}
+	{% if messages %}
 	{% for message in messages %}
 	{% include 'components/toasts/toast.html' %}
 	{% endfor %}
+	{% endif %}
 	{% endwith %}
 
 	{% include 'components/footer.html' %}

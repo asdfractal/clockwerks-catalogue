@@ -79,7 +79,7 @@ def add_to_favourites(hero_id):
     USERS.update_one(
         user_profile, {"$push": {"favourites": {"hero": ObjectId(hero_id)}}},
     )
-    flash(f"{hero_name} added to your list.")
+    flash(f"{hero_name} added to your list.", "message")
     return redirect(url_for("heroes"))
 
 
@@ -96,7 +96,7 @@ def remove_from_favourites(hero_id):
     USERS.update_one(
         user_profile, {"$pull": {"favourites": {"hero": ObjectId(hero_id)}}}
     )
-    flash(f"{hero_name} removed from your list.")
+    flash(f"{hero_name} removed from your list.", "message")
     if "from_profile" in request.form:
         return redirect(url_for("user_list"))
     return redirect(url_for("heroes"))
@@ -114,7 +114,7 @@ def add_hero_note(hero_id):
         {"_id": ObjectId(user_id), "favourites.hero": ObjectId(hero_id)},
         {"$set": {"favourites.$.note": note}},
     )
-    flash("Hero note updated.")
+    flash("Hero note updated.", "message")
     return redirect(url_for("user_list"))
 
 
@@ -129,7 +129,7 @@ def remove_hero_note(hero_id):
         {"_id": ObjectId(user_id), "favourites.hero": ObjectId(hero_id)},
         {"$unset": {"favourites.$.note": ""}},
     )
-    flash("Hero note removed.")
+    flash("Hero note removed.", "message")
     return redirect(url_for("user_list"))
 
 
@@ -226,9 +226,9 @@ def create_account():
                 create_user(username, hash_pw)
                 session["username"] = username
                 return redirect(url_for("profile", username=username))
-            flash("Username is taken, please try another one.")
+            flash("Username is taken, please try another one.", "error")
         else:
-            flash("Password does not match, please re-enter.")
+            flash("Password does not match, please re-enter.", "error")
 
     return render_template(
         "pages/account.html",
@@ -259,9 +259,9 @@ def login():
                 session["username"] = request.form["username"]
                 return redirect(url_for("profile", username=username))
 
-            flash("Incorrect password, please try again.")
+            flash("Incorrect password, please try again.", "error")
         else:
-            flash("That username does not exist.")
+            flash("That username does not exist.", "error")
 
     return render_template(
         "pages/account.html",
@@ -320,7 +320,7 @@ def edit_profile(username):
                 }
             },
         )
-        flash("Profile updated.")
+        flash("Profile updated.", "message")
         return redirect(url_for("profile", username=user_profile["name"]))
 
     return render_template(
