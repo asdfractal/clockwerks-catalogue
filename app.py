@@ -7,6 +7,7 @@ from flask import (
     url_for,
     session,
     flash,
+    jsonify,
 )
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -64,6 +65,26 @@ def heroes():
             main_wrapper="heroes-main-wrapper",
             content_wrapper="heroes-content-wrapper",
         )
+
+
+@APP.route("/api/")
+def api():
+    """
+    API to query heroes and filter by attribute and return json to process on the
+    front end.
+    """
+    if "attr" in request.args:
+        attr = request.args["attr"].lower()
+    query_heroes = HEROES.find({"primary_attr": attr})
+    filtered_heroes = {}
+    i = 0
+    for hero in query_heroes:
+        for key in hero:
+            if key == "id":
+                i += 1
+                filtered_heroes.update({i: hero[key]})
+
+    return jsonify(filtered_heroes)
 
 
 @APP.route("/add/<hero_id>")
@@ -381,4 +402,4 @@ def error_internal_server(error):
 
 
 if __name__ == "__main__":
-    APP.run(host=os.getenv("IP"), port=os.getenv("PORT"), debug=False)
+    APP.run(host=os.getenv("IP"), port=os.getenv("PORT"), debug=True)
