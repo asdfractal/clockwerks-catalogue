@@ -13,12 +13,10 @@
 		<div class="form-group">
 			<button class="btn form-btn float-right">Login</button>
 		</div>
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
+		{% with messages = get_flashed_messages(category_filter=("error")) %}
 		{% for message in messages %}
 		<p class="form-message-error">{{ message }}</p>
 		{% endfor %}
-		{% endif %}
 		{% endwith %}
 	</fieldset>
 </form>

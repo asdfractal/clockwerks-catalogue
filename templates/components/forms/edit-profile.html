@@ -69,15 +69,6 @@
 			<div class="form-group">
 				<button class="btn form-btn float-right">Update</button>
 			</div>
-			{% with messages = get_flashed_messages(with_categories=true) %}
-			{% if messages %}
-			{% if category == "error" %}
-			{% for message in messages %}
-			<p class="form-message-error">{{ message }}</p>
-			{% endfor %}
-			{% endif %}
-			{% endif %}
-			{% endwith %}
 		</fieldset>
 	</form>
 </div>
