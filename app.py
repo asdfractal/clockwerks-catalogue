@@ -66,28 +66,40 @@ def heroes():
         )
 
 
-@APP.route("/add/<hero_id>", methods=["POST"])
+@APP.route("/add/<hero_id>")
 def add_to_favourites(hero_id):
     """
     Adds a hero to the current user's list.
     """
     user_profile = USERS.find_one({"name": session["username"]})
+    hero = HEROES.find_one({"_id": ObjectId(hero_id)})
+    for key in hero:
+        if key == "name":
+            hero_name = hero[key]
     USERS.update_one(
         user_profile, {"$push": {"favourites": {"hero": ObjectId(hero_id)}}},
     )
-    return redirect(url_for("user_list"))
+    flash(f"{hero_name} added to your list.")
+    return redirect(url_for("heroes"))
 
 
-@APP.route("/remove/<hero_id>")
+@APP.route("/remove/<hero_id>", methods=["GET", "POST"])
 def remove_from_favourites(hero_id):
     """
     Removes a hero from the current user's list.
     """
     user_profile = USERS.find_one({"name": session["username"]})
+    hero = HEROES.find_one({"_id": ObjectId(hero_id)})
+    for key in hero:
+        if key == "name":
+            hero_name = hero[key]
     USERS.update_one(
         user_profile, {"$pull": {"favourites": {"hero": ObjectId(hero_id)}}}
     )
-    return redirect(url_for("user_list"))
+    flash(f"{hero_name} removed from your list.")
+    if "from_profile" in request.form:
+        return redirect(url_for("user_list"))
+    return redirect(url_for("heroes"))
 
 
 @APP.route("/note/add/<hero_id>", methods=["POST"])
@@ -102,6 +114,7 @@ def add_hero_note(hero_id):
         {"_id": ObjectId(user_id), "favourites.hero": ObjectId(hero_id)},
         {"$set": {"favourites.$.note": note}},
     )
+    flash("Hero note updated.")
     return redirect(url_for("user_list"))
 
 
@@ -116,6 +129,7 @@ def remove_hero_note(hero_id):
         {"_id": ObjectId(user_id), "favourites.hero": ObjectId(hero_id)},
         {"$unset": {"favourites.$.note": ""}},
     )
+    flash("Hero note removed.")
     return redirect(url_for("user_list"))
 
 
@@ -139,10 +153,6 @@ def user_list():
             except KeyError:
                 hero["note"] = ""
                 user_favourites.append(hero)
-        print(user_favourites)
-
-        for fav in user_favourites:
-            print(fav["note"])
 
         return render_template(
             "pages/user-list.html",
@@ -310,6 +320,7 @@ def edit_profile(username):
                 }
             },
         )
+        flash("Profile updated.")
         return redirect(url_for("profile", username=user_profile["name"]))
 
     return render_template(
@@ -333,7 +344,7 @@ def error_page_not_found(error):
         render_template(
             "pages/error.html",
             error=error,
-            main_wrapper="error-main-wrapper",
+            main_wrapper="index-main-wrapper",
             content_wrapper="error-content-wrapper",
         ),
         404,
@@ -350,7 +361,7 @@ def error_internal_server(error):
         render_template(
             "pages/error.html",
             error=error,
-            main_wrapper="error-main-wrapper",
+            main_wrapper="index-main-wrapper",
             content_wrapper="error-content-wrapper",
         ),
         500,
