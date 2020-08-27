@@ -1,10 +1,12 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-<div class="account-box">
-	{% if create_account == True %}
-	{% include 'components/forms/create-account.html' %}
-	{% else %}
-	{% include 'components/forms/login.html' %}
-	{% endif %}
+<div class="display-box">
+	<div class="form-wrapper">
+		{% if create_account == True %}
+		{% include 'components/forms/create-account.html' %}
+		{% else %}
+		{% include 'components/forms/login.html' %}
+		{% endif %}
+	</div>
 </div>
 {% endblock %}

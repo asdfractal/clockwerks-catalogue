@@ -1,13 +1,14 @@
+<h3 class="form-title color-gold text-center">Login</h3>
 <form method="POST">
 	<fieldset>
-		<legend class="form-title">Login</legend>
 		<div class="form-group">
 			<label for="username">Username</label>
 			<input type="text" class="form-control" id="username" name="username" placeholder="enter username" required>
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label>
-			<input type="password" class="form-control" id="password" name="password" placeholder="enter password" required>
+			<input type="password" class="form-control" id="password" name="password" placeholder="enter password"
+				required>
 		</div>
 		<div class="form-group">
 			<button class="btn form-btn float-right">Login</button>
@@ -23,8 +24,6 @@
 </form>
 <div class="row pt-5">
 	<div class="col-12 text-right">
-		<p>No account? <a class="text-link-color" href="{{url_for('create_account')}}">Create one.</a></p>
+		<p>No account? <a class="color-gold" href="{{url_for('create_account')}}">Create one.</a></p>
 	</div>
 </div>
-
-
