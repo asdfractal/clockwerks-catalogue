@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	{% include 'layout/head.html' %}
 	<title>{{title}} | Clockwerk's Catalogue</title>
 </head>
+
 <body class="d-flex flex-column h-100">
-    {% include 'components/header.html' %}
-    <main class="flex-shrink-0 {{main_wrapper}}">
-        <section class="container-fluid {{content_wrapper}}">
-            {% block content %} {% endblock %}
-        </section>
-    </main>
+	{% include 'components/header.html' %}
+	<main class="flex-shrink-0 {{main_wrapper}}">
+		<section class="container-fluid {{content_wrapper}}">
+			{% block content %} {% endblock %}
+		</section>
+	</main>
+
+	{% with messages = get_flashed_messages() %}
+	{% for message in messages %}
+	{% include 'components/toasts/toast.html' %}
+	{% endfor %}
+	{% endwith %}
+
 	{% include 'components/footer.html' %}
 	{% include 'layout/scripts.html' %}
 </body>
+
 </html>
