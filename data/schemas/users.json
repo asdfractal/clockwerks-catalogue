@@ -1,9 +1,15 @@
-[{
+{
     "_id": "<ObjectId()>",
     "name": "<string>",
-    "password": "<binary_hashed_string>",
-    "favourites": {
-		"0": "<ObjectId()>",
-		"1": "<ObjectId()>"
-    }
-}]
+    "password": "<hashed string>",
+    "favourites": [{
+        "hero": "<ObjectId()>",
+        "note": "<string>"
+    }],
+    "primary_role": "<string>",
+    "region": "<string>",
+    "best_rank": "<string>",
+    "current_rank": "<string>",
+    "avatar": "<string>",
+    "biography": "<string>"
+}
