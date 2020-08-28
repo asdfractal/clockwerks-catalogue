@@ -67,8 +67,8 @@ def heroes():
         )
 
 
-@APP.route("/api/")
-def api():
+@APP.route("/api/heroes/")
+def api_heroes():
     """
     API to query heroes and filter by attribute and return json to process on the
     front end.
