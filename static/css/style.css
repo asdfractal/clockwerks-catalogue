@@ -171,8 +171,8 @@ hr {
 	border: 0;
 	border-radius: 0;
 	position: fixed;
-	top: 85px;
-	right: 5px;
+	top: 14vh;
+	right: 0.5rem;
 }
 
 .toast-close {
@@ -266,6 +266,16 @@ hr {
 	margin-top: 10vh;
 	margin-bottom: 10vh;
 	padding-top: 1rem;
+}
+
+.hero-filter-icon {
+	width: 40px;
+	height: 40px;
+}
+
+.hero-filter-active {
+	border: 3px solid #D7920A;
+	border-radius: 50%;
 }
 
 .hero-thumbnail {
