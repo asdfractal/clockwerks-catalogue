@@ -37,7 +37,7 @@ def index():
     )
 
 
-@APP.route("/heroes")
+@APP.route("/heroes/")
 def heroes():
     """
     Renders the page to display all heroes. Checks if a user exists and if so,
@@ -87,7 +87,7 @@ def api_heroes():
     return jsonify(filtered_heroes)
 
 
-@APP.route("/add/<hero_id>")
+@APP.route("/add/<hero_id>/")
 def add_to_favourites(hero_id):
     """
     Adds a hero to the user's list.
@@ -104,7 +104,7 @@ def add_to_favourites(hero_id):
     return redirect(url_for("heroes"))
 
 
-@APP.route("/remove/<hero_id>", methods=["GET", "POST"])
+@APP.route("/remove/<hero_id>/", methods=["GET", "POST"])
 def remove_from_favourites(hero_id):
     """
     Removes a hero from the user's list.
@@ -123,7 +123,7 @@ def remove_from_favourites(hero_id):
     return redirect(url_for("heroes"))
 
 
-@APP.route("/note/add/<hero_id>", methods=["POST"])
+@APP.route("/note/add/<hero_id>/", methods=["POST"])
 def add_hero_note(hero_id):
     """
     Adds a note to a hero in the user's list.
@@ -142,7 +142,7 @@ def add_hero_note(hero_id):
     return redirect(url_for("user_list"))
 
 
-@APP.route("/note/remove/<hero_id>")
+@APP.route("/note/remove/<hero_id>/")
 def remove_hero_note(hero_id):
     """
     Removes a note from a hero in the user's list.
@@ -160,7 +160,7 @@ def remove_hero_note(hero_id):
     return redirect(url_for("user_list"))
 
 
-@APP.route("/favourites")
+@APP.route("/favourites/")
 def user_list():
     """
     If a user is logged in, renders the page to show their list, otherwise
@@ -232,7 +232,7 @@ def create_user(username, password):
     )
 
 
-@APP.route("/user/create", methods=["GET", "POST"])
+@APP.route("/user/create/", methods=["GET", "POST"])
 def create_account():
     """
     If a user is logged in, redirects to the page to show their list, otherwise
@@ -266,7 +266,7 @@ def create_account():
     )
 
 
-@APP.route("/user/login", methods=["GET", "POST"])
+@APP.route("/user/login/", methods=["GET", "POST"])
 def login():
     """
     If a user is logged in, renders the page to show their list, otherwise
@@ -299,7 +299,7 @@ def login():
     )
 
 
-@APP.route("/user/logout")
+@APP.route("/user/logout/")
 def logout():
     """
     Logs user out by clearing the session and redirects to home page.
@@ -308,7 +308,7 @@ def logout():
     return redirect(url_for("index"))
 
 
-@APP.route("/user/<username>")
+@APP.route("/user/<username>/")
 def profile(username):
     """
     Displays the user's profile page.
@@ -325,7 +325,7 @@ def profile(username):
     )
 
 
-@APP.route("/edit/<username>", methods=["GET", "POST"])
+@APP.route("/edit/<username>/", methods=["GET", "POST"])
 def edit_profile(username):
     """
     Display a page to edit and update profile information.
