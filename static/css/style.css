@@ -34,11 +34,6 @@ h1 {
 	font-family: 'Audiowide', cursive;
 }
 
-hr {
-	margin: 1rem 0.5rem;
-	border-top: 1px rgba(240, 239, 244, 0.5) solid;
-}
-
 .btn {
 	color: #f4f4f4;
 }
@@ -74,10 +69,6 @@ hr {
 
 .hero-favourite__fade {
 	opacity: 0.5;
-}
-
-.bg-color-pink {
-	background-color: #9E829C !important;
 }
 
 .color-white {
@@ -246,6 +237,14 @@ hr {
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+.unsupported-browser {
+	height: 80vh;
+	margin: 8vh 0 0;
+	padding: 5rem;
+	text-align: center;
+	display: none;
 }
 
 /* Header/Navbar */

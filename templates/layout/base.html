@@ -13,7 +13,7 @@
 			{% block content %} {% endblock %}
 		</section>
 	</main>
-
+	<div class="card unsupported-browser">test</div>
 	{% with messages = get_flashed_messages(category_filter=("message")) %}
 	{% for message in messages %}
 	{% include 'components/toasts/toast.html' %}
@@ -22,6 +22,26 @@
 
 	{% include 'components/footer.html' %}
 	{% include 'layout/scripts.html' %}
+
+	<!-- Checks for internet explorer and informs user browser not supported -->
+	<script>
+		function isIE() {
+			return /Trident\/|MSIE/.test(window.navigator.userAgent);
+		}
+
+		let showBrowserAlert = (function () {
+			if (document.querySelector('.unsupported-browser')) {
+				let d = document.getElementsByClassName('unsupported-browser');
+				is_IE = isIE();
+				if (is_IE) {
+					document.getElementsByClassName('index-main-wrapper').style.display = 'none';
+					d[0].innerHTML = '<p>Sorry, your browser is out of date and not supported on this website. If you would like to play Quiz Wizard, please update your browser. We recommend <a href="https://www.google.com/chrome/" target="_blank">Google Chrome.</a></p>';
+					d[0].style.display = 'block';
+				}
+			}
+		});
+		document.addEventListener('DOMContentLoaded', showBrowserAlert);
+	</script>
 </body>
 
 </html>
