@@ -341,9 +341,11 @@ def edit_profile(username):
     current_brank = user_profile["best_rank"]
     current_crank = user_profile["current_rank"]
     current_avatar = user_profile["avatar"]
-    current_biography = user_profile["biography"]
 
     if request.method == "POST":
+        biography = request.form.get("biography")
+        if biography.isspace():
+            biography = ""
         USERS.update_one(
             {"_id": user_id},
             {
@@ -353,7 +355,7 @@ def edit_profile(username):
                     "best_rank": request.form.get("best_rank", current_brank),
                     "current_rank": request.form.get("current_rank", current_crank),
                     "avatar": request.form.get("avatar", current_avatar),
-                    "biography": request.form.get("biography", current_biography),
+                    "biography": biography,
                 }
             },
         )
