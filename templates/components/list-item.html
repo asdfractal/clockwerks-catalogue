@@ -20,9 +20,8 @@
 			<textarea type="text" name="note" class="w-100">{{ fav.note }}</textarea>
 		</div>
 		<div class="col-12">
-			<a href="{{ url_for('remove_hero_note', hero_id=fav._id) }}"
-				class="btn btn-primary border-color-dota button-sm">Delete</a>
-			<button class="btn bg-color-pink button-sm float-right" type="submit">Save</button>
+			<a href="{{ url_for('remove_hero_note', hero_id=fav._id) }}" class="btn bg-dark button-sm">Delete</a>
+			<button class="btn bg-color-dota button-sm float-right" type="submit">Save</button>
 		</div>
 	</form>
 </div>

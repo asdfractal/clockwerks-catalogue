@@ -2,16 +2,16 @@
 {% block content %}
 <div class="index-title-wrapper">
 	<div class="text-center text-uppercase">
-		<h1 class="index-title-text">Clockwerk's Catalogue</h1>
+		<h1 class="index-title-text color-white">Clockwerk's Catalogue</h1>
 	</div>
 	<div class="text-center pt-1 pb-3">
-		<h3 class="index-title-subtext">Create your personal hero list</h3>
+		<h2 class="index-title-subtext color-white">Create your personal hero list</h2>
 	</div>
 </div>
 <div class="d-flex justify-content-center">
-	<a class="btn btn-primary index-btn border-color-dota mx-2" href="{{url_for('heroes')}}">Heroes</a>
+	<a class="btn bg-color-dota index-btn mx-2" href="{{url_for('heroes')}}">Heroes</a>
 	{% if session['username'] %}
-	<a class="btn index-btn bg-color-pink mx-2" href="{{url_for('user_list')}}">Favourites</a>
+	<a class="btn index-btn bg-dark mx-2" href="{{url_for('user_list')}}">Favourites</a>
 	{% else %}
 	<a class="btn index-btn bg-color-pink mx-2" href="{{url_for('login')}}">Sign In</a>
 	{% endif %}

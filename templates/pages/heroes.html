@@ -6,7 +6,7 @@
 		<div class="modal-content">
 			<div class="modal-body p-0">
 				<div class="card">
-					<img class="card-img-top" src="{{portrait}}" alt="">
+					<img class="card-img-top border-color-white" src="{{portrait}}" alt="">
 					<div class="card-body">
 						<div class="container-fluid px-0">
 							<div class="row">
@@ -17,7 +17,7 @@
 							<div class="row">
 								<div class="col-6">
 									<div class="row no-gutters">
-										<div class="col-12 border-bottom border-top border-1 py-2">
+										<div class="col-12 border-black border-bottom border-top border-1 py-2">
 											<p class="card-text text-capitalize text-right">
 												{% if attribute == 'agility' %}
 												<img src="{{url_for('static', filename='images/icons/agility.png')}}"
@@ -41,9 +41,9 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-6 border-left border-1">
+								<div class="col-6 border-black border-left border-1">
 									<div class="row no-gutters">
-										<div class="col-12 border-top border-1 pt-2">
+										<div class="col-12 border-black border-top border-1 pt-2">
 											{% for role in roles %}
 											<p class="card-text">
 												{% if role == 'Carry' %}
@@ -93,7 +93,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 border-bottom border-1"></div>
+			<div class="col-12 border-black border-bottom border-1"></div>
 			<div class="row no-gutters">
 				<button type="button" class="text-secondary icon-large border-0 bg-transparent pl-4"
 					data-dismiss="modal">
@@ -110,7 +110,7 @@
 					<a href="{{url_for('remove_from_favourites', hero_id=id)}}" class="color-gold icon-large"><i
 							class="fas fa-heart"></i></a>
 					{% else %}
-					<a href="{{url_for('add_to_favourites', hero_id=id)}}" class="icon-large"><i
+					<a href="{{url_for('add_to_favourites', hero_id=id)}}" class="icon-large color-gold"><i
 							class="far fa-heart"></i></a>
 					{% endif %}
 				</div>
@@ -121,21 +121,24 @@
 </div>
 {% endmacro %}
 
-
 {% block content %}
-<h2 class="page-title border-underline py-3">Heroes</h2>
-<div class="row text-center">
-	<div class="col-2 ml-auto">
-		<img class="js-filter-button hero-filter-icon" src="{{url_for('static', filename='images/icons/agility.png')}}"
-			alt="agility" id="agility">
-	</div>
-	<div class="col-2">
-		<img class="js-filter-button hero-filter-icon" src="{{url_for('static', filename='images/icons/strength.png')}}"
-			alt="strength" id="strength">
-	</div>
-	<div class="col-2 mr-auto">
-		<img class="js-filter-button hero-filter-icon"
-			src="{{url_for('static', filename='images/icons/intelligence.png')}}" alt="intelligence" id="intelligence">
+<h1 class="page-title border-underline py-3">Heroes</h1>
+
+<div class="hero-filter__wrapper mx-auto">
+	<div class="row text-center">
+		<div class="col-4 ml-auto">
+			<img class="js-filter-button hero-filter-icon"
+				src="{{url_for('static', filename='images/icons/agility.png')}}" alt="agility" id="agility">
+		</div>
+		<div class="col-4">
+			<img class="js-filter-button hero-filter-icon"
+				src="{{url_for('static', filename='images/icons/strength.png')}}" alt="strength" id="strength">
+		</div>
+		<div class="col-4 mr-auto">
+			<img class="js-filter-button hero-filter-icon"
+				src="{{url_for('static', filename='images/icons/intelligence.png')}}" alt="intelligence"
+				id="intelligence">
+		</div>
 	</div>
 </div>
 <div class="display-box">
@@ -146,11 +149,11 @@
 			{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr, hero.attack)}}
 			{% if hero._id in user_favourites %}
 			<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
-				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="border-color-gold" id="{{ hero.id }}">
+				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="hero-favourite__fade" id="{{ hero.id }}">
 			</a>
 			{% else %}
 			<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
-				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="border-not-favourite" id="{{ hero.id }}">
+				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" id="{{ hero.id }}">
 			</a>
 			{% endif %}
 		</div>
