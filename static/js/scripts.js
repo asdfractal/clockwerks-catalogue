@@ -83,12 +83,7 @@ const heroNoteToggler = (heroIds) => {
 	})
 }
 
-// Toasts
 $(".toast").toast("show")
-
-$(".toast-close").click(() => {
-	$(".toast").toast("hide")
-})
 
 $(document).ready(function () {
 	heroNoteToggler(heroIdList)
