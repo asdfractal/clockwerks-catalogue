@@ -42,6 +42,7 @@ const filterHeroes = (heroes) => {
 		$(`#${id}`).parent().parent().show()
 	})
 	loadingSpinner.hide()
+	heroFilterTitle.text(`${_this.id}`).addClass("mb-3")
 }
 
 /**
@@ -65,7 +66,6 @@ document.querySelectorAll(".js-filter-button").forEach((element) => {
 			heroFilterButton.removeClass("hero-filter-active")
 			query = this.id
 			this.classList.add("hero-filter-active")
-			heroFilterTitle.text(`${this.id}`).addClass("mb-3")
 			processData(query)
 		}
 	})
