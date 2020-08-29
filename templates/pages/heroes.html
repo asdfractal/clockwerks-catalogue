@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 <!-- Macro to create a modal with specific data for each hero, taking properties from the heroes data schema. Macro is called in block below. -->
-{% macro render_modal(id, name, portrait, roles, attribute) %}
+{% macro render_modal(id, name, portrait, roles, attribute, attack) %}
 <div class="modal fade" id="heroModal{{id}}" tabindex="-1" role="dialog" aria-label="heroModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-hero-width mx-auto" role="document">
 		<div class="modal-content">
@@ -143,7 +143,7 @@
 	<div class="row d-flex justify-content-center mx-auto">
 		{% for hero in heroes %}
 		<div class="hero-thumbnail">
-			{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr)}}
+			{{ render_modal(hero._id, hero.name, hero.image_full, hero.roles, hero.primary_attr, hero.attack)}}
 			{% if hero._id in user_favourites %}
 			<a href="#heroModal{{hero._id}}" role="button" data-toggle="modal" id="{{ hero._id }}">
 				<img src="{{ hero.image_thumb }}" alt="{{ hero.name }}" class="border-color-gold" id="{{ hero.id }}">
