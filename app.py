@@ -166,7 +166,7 @@ def user_list():
     If a user is logged in, renders the page to show their list, otherwise
     redirects to create account page.
     """
-    if session:
+    if "username" in session:
         user_profile = USERS.find_one({"name": session["username"]})
         raw_favourites = user_profile["favourites"]
         user_favourites = []
@@ -188,8 +188,8 @@ def user_list():
             main_wrapper="favourites-main-wrapper",
             content_wrapper="favourites-content-wrapper",
         )
-
-    return redirect(url_for("create_account"))
+    flash("Please login or create an account to access your favourites.")
+    return redirect(url_for("login"))
 
 
 def set_password(password):
@@ -239,7 +239,7 @@ def create_account():
     renders the page to create account and creates a new user in the database
     upon form submission.
     """
-    if session:
+    if "username" in session:
         return redirect(url_for("user_list"))
 
     if request.method == "POST":
@@ -272,7 +272,7 @@ def login():
     If a user is logged in, renders the page to show their list, otherwise
     renders the page to login and handles requests.
     """
-    if session:
+    if "username" in session:
         return redirect(url_for("user_list"))
 
     if request.method == "POST":
@@ -313,16 +313,20 @@ def profile(username):
     """
     Displays the user's profile page.
     """
-    user_profile = USERS.find_one({"name": username})
+    if "username" in session:
+        user_profile = USERS.find_one({"name": username})
 
-    return render_template(
-        "pages/user-profile.html",
-        title="Profile",
-        edit_profile=False,
-        main_wrapper="account-main-wrapper",
-        content_wrapper="account-content-wrapper",
-        user_profile=user_profile,
-    )
+        return render_template(
+            "pages/user-profile.html",
+            title="Profile",
+            edit_profile=False,
+            main_wrapper="account-main-wrapper",
+            content_wrapper="account-content-wrapper",
+            user_profile=user_profile,
+        )
+
+    flash("Please login or create an account to access your profile.")
+    return redirect(url_for("login"))
 
 
 @APP.route("/edit/<username>/", methods=["GET", "POST"])
