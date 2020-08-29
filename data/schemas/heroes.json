@@ -1,12 +1,13 @@
 [{
-	"_id": "<ObjectId()>",
-	"id": "integer",
-	"name": "<string>",
-	"primary_attr": "<string>",
-	"image_thumb": "<string>",
-	"image_full": "<string>",
-	"roles": [
-		"<string>",
-		"<string>"
-	]
+    "_id": "<ObjectId()>",
+    "id": "integer",
+    "name": "<string>",
+    "primary_attr": "<string>",
+    "image_thumb": "<string>",
+    "image_full": "<string>",
+    "roles": [
+        "<string>",
+        "<string>"
+    ],
+    "attack": "<string>"
 }]
