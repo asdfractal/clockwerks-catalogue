@@ -1,8 +1,7 @@
 {% extends 'layout/base.html' %}
 <!-- Macro to create a modal with specific data for each hero, taking properties from the heroes data schema. Macro is called in block below. -->
 {% macro render_modal(id, name, portrait, roles, attribute) %}
-<div class="modal fade" id="heroModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="heroModalLabel"
-	aria-hidden="true">
+<div class="modal fade" id="heroModal{{id}}" tabindex="-1" role="dialog" aria-label="heroModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-hero-width mx-auto" role="document">
 		<div class="modal-content">
 			<div class="modal-body p-0">
@@ -36,7 +35,7 @@
 										<div class="col-12 mt-2">
 											<p class="text-right">Hero guide</p>
 											<p class="text-right">
-												<a href="https://www.youtube.com" target="_blank"><i
+												<a href="https://www.youtube.com" target="_blank" rel="noopener"><i
 														class="fab fa-youtube hero-guide-icon color-dota-lighten"></i></a>
 											</p>
 										</div>
@@ -158,4 +157,13 @@
 		{% endfor %}
 	</div>
 </div>
+
+<div id="loadingOverlay">
+	<div class="row h-100">
+		<div id="loadingSpinner">
+			<div class="lds-dual-ring"></div>
+		</div>
+	</div>
+</div>
+
 {% endblock %}

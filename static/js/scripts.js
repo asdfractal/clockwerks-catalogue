@@ -3,6 +3,7 @@ const heroIdList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1
 // prettier-enable
 const heroFilterTitle = $(".hero-filter-title")
 const heroFilterButton = $(".js-filter-button")
+const loadingSpinner = $("#loadingOverlay")
 
 /**
  * Sends a query to server to filter heroes by attribute.
@@ -22,6 +23,7 @@ const queryApi = async (query) => {
  * @param {string} query the attribute to filter by
  */
 const processData = async (query) => {
+	loadingSpinner.show()
 	const data = await queryApi(query)
 	const dataValues = []
 	for (const id of Object.values(data)) {
@@ -39,6 +41,7 @@ const filterHeroes = (heroes) => {
 	heroes.forEach((id) => {
 		$(`#${id}`).parent().parent().show()
 	})
+	loadingSpinner.hide()
 }
 
 /**
