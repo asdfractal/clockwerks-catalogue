@@ -344,6 +344,11 @@ hr {
 	border-radius: 50%;
 }
 
+.hero-filter-title {
+	font-family: 'Audiowide', cursive;
+	font-size: 2.2rem;
+}
+
 .hero-thumbnail {
 	padding: 0.3rem;
 }
