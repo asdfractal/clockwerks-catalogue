@@ -5,7 +5,8 @@
 	</div>
 	<div class="col-3 text-right">
 		<form action="{{url_for('remove_from_favourites', hero_id=fav._id)}}" method="POST">
-			<button href="" class="color-gold icon-large border-0 bg-transparent" name="from_profile">
+			<button class="color-gold icon-large border-0 bg-transparent" name="from_profile"
+				aria-label="Remove from favourites">
 				<i class="fas fa-heart"></i>
 			</button>
 		</form>
