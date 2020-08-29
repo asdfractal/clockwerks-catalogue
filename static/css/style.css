@@ -297,7 +297,7 @@ hr {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	min-height: 90vh;
+	min-height: 87vh;
 }
 
 .index-content-wrapper {
@@ -320,7 +320,7 @@ hr {
 
 /* Heroes page */
 .heroes-main-wrapper {
-	min-height: 90vh;
+	min-height: 87vh;
 }
 
 .heroes-content-wrapper {
@@ -367,7 +367,7 @@ hr {
 
 /* Favourites page */
 .favourites-main-wrapper {
-	min-height: 90vh;
+	min-height: 87vh;
 }
 
 .favourites-content-wrapper {
@@ -382,7 +382,7 @@ hr {
 
 /* Account/Profile page */
 .account-main-wrapper {
-	min-height: 90vh;
+	min-height: 87vh;
 }
 
 .account-content-wrapper {
