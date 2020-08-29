@@ -1,6 +1,40 @@
 # Clockwerk's Catalogue
 
-A small web app designed to allow users to create a list of their favourite heroes from the game 'DOTA 2'.
+A small web app designed to allow users to create a list of their favourite heroes from the game 'DOTA 2'. Users can also create a small profile with a biography and information related to the game, as well as attach personal notes to their favourite heroes.
+
+This is a website developed for Code Institute milestone project 3.
+
+## Contents:
+* User Experience
+    * Project Goals
+    * Target Audience Goals
+    * Site Owner Goals
+    * User Stories
+    * Requirements
+    * Expectations
+* Design Choices
+    * Colours
+    * Fonts
+    * Icons
+    * CSS
+    * Images
+    * Wireframes
+    * Code Styling
+* Information Architecture
+* Features
+    * Implemented Features
+    * Planned Features
+* Technologies Used
+    * Languages
+    * Tools & Libraries
+* Testing & Bugs
+* Development & Deployment
+    * Local Development and Set-Up
+    * Heroku Deployment
+* Credits
+    * Images
+* Acknowledgements
+* Disclaimer
 
 ## User Experience
 
@@ -25,55 +59,91 @@ The goal of this project is to provide a complete list of all heroes in the comp
 * As a user, I would like to be able to see detailed information about a hero to assist my selection process
 * As a user, I would like to be able to add notes or a comment about a hero so that I can remember why I added it to my list
 
-### User Requirements and Expectations
 #### Requirements
 * Easy to use and navigate the website
 * Create an account and view list
 * Create a list of heroes
+* Functionality to add personal notes to hero
 #### Expectations
 * User information is protected
 * Website load times are sufficient
+* Information is stored and can be easily accessed at a later date
 
 ## Design Choices
-The design of the website is influenced by the target audience as well as the official DOTA 2 website and in game UI. To achieve this I have chosen the [Slate](https://bootswatch.com/slate/) theme from Bootswatch, which I will use as a base and build upon with my own accents.
+The design of the website is a minimalist white theme with a prominent centered display box, raised from the background with a sharp box shadow and border. To achieve this I have chosen the [Spacelab](https://bootswatch.com/spacelab/) theme from Bootswatch, which I will use as a base and build upon with my own accents.
+
+The current iteration of the design is the result of a complete overhaul of the styles after being dissatisfied with the original implementation.
 
 ### Colours
+I used the 'DOTA 2 Red' colour in a complimentary colour tool to find the 'Harvest Gold' colour
 
-#### Additional Colours
-I used the 'DOTA 2 Red' colour in a complimentary colour tool to find the 'Harvest Gold' colour. Then using [coolers.co](https://coolors.co/) I entered the two colours and generated the rest
-* #9E2F19 Dota 2 Red - This is the colour used in the DOTA 2 logo. It is used as the primary accent colour on the website
-* #D7920A Harvest Gold - A complimentary gold colour, used to signify a hero is on the user's favourites list
-* #9E829C Mountbatten Pink - A pleasant colour that stands out against the background, used for the sign up button to draw attention
-#F0EFF4 Ghost White - Slightly off white used in place of white
+![Colour Pallete](/wireframes/colour-palette.png).
+
+* Dota 2 Red - #9E2F19 - This is the colour used in the DOTA 2 logo. It is used as the primary accent colour on the website
+* Vermillion - #E12500 - Dota 2 red a few shades lighter
+* Harvest Gold - #D7920A - A complimentary gold colour, used to signify a hero is on the user's favourites list
+* Ghost White - #F4F4F4 - Slightly off white used in place of white
 
 ### Fonts
-* Display Font 'Audiowide' - I found  this modern looking display font on [Google Fonts](https://fonts.google.com/), which I think looks very good for the purpose of this website
-* Body Font 'Lato' - Using the popular pairings section of Google Fonts I chose Lato, an easy to read san serif font
+* Headers - 'Audiowide' - I found  this modern looking display font on [Google Fonts](https://fonts.google.com/), which I think looks very good for the purpose of this website
+* Body - 'Lato' - Using the popular pairings section of Google Fonts I chose Lato, an easy to read san serif font
 
-### Images
-The background image on the home page is a hero from the game - Clockwerk - which the website is named after. The image thumbnails and full size portraits on the modals are official DOTA 2 images from the Valve CDN. The logo is an image I made by combining an icon of Clockwerk and two of the letter C.
+### Icons
+I have font awesome icons across the website to aid in displaying content and navigation options instead of using only text. There are also official DOTA2 icons on the heroes page and cards.
 
 ### CSS
-* I have chosen to use the [BEM](http://getbem.com/) naming convention for my CSS classes. I like the way this reads and allows for descriptive naming for ease of use
+* I am using the [BEM](http://getbem.com/) naming convention for my CSS classes to create modular, reusable components.
 
 Note on CSS: I have chosen to use vw/vh on padding and margins in a lot of cases as I believe this allows for an even more responsive experience than using solely rem. My decision was influenced by my own experimentation as well as researching, particularly [this](https://www.elegantthemes.com/blog/divi-resources/better-mobile-website-design-how-to-use-vw-vh-and-rem-to-create-fluid-divi-pages) article.
 
-## Wireframes
-I created the wireframes using Balsamiq Wireframes. I made both desktop and mobile/tablet wireframes to have a blueprint for different devices users might access the website on. This helped to build a working website in a short time, and then adjust based on further testing to reach the final product.
+### Images
+The background image on the home page is a hero from the game - Clockwerk - which the website is named after. The logo is an image I made by combining an icon of Clockwerk and two of the letter C from the Audiowide font. The rest of the images are from Valve and credited in the credits section of the readme.
 
-View the wireframes for this project [here](./wireframes).
+### Wireframes
+I created the wireframes using Balsamiq Wireframes. The mobile/tablet are combined because there will be minimal differences in the design. I used them as a blueprint and then adjusted based on further testing to reach the final design. The wireframes can be viewed [here](/wireframes/).
 
-### Information Architechture
+### Code styling
+For consistency and readable code I am using formatters and format on save option.
+* HTML - Beautify
+* SCSS - Formate
+* JavaScript - Prettier (options)
 
-I created data schemas for the following collections in the database for this project. View them [here](./data/schemas).
+    ```json
+    "printWidth": 88,
+    "tabWidth": 4,
+    "trailingComma": "all",
+    "semi": false
+    ```
+
+* Python - Black
+
+#### Rationale
+I spent quite a bit of time reading about JavaScript and Python formatting conventions and settled on this configuration for a few reasons. For JS, I prefer the clean look without semicolons but I understand it can cause ASI errors. The 'semi: false' setting of Prettier covers this and will insert them where this could occur.
+I decided to use Black as my Python formatter because I liked what I read about it and after using it I like the code it produces. It has a line length of 88 and solid reasoning behind this choice, I chose the same number for Prettier to be consistent across the project. Using pylint-flask and a vscode extension called Error Lens I am notified immediately of errors in my code and this has helped me to write functional code and learn about best practices.
+
+## Information Architechture
+
+View the data schemas for the project [here](/data/schemas).
 
 **Users Collection**
 **Title**|**Key in Collection**|**Data Type**
 :-----:|:-----:|:-----:
 User ID|_id|ObjectId
 Name|name|String
-Password|password|Binary
-Favourites|favourites|Object
+Password|password|Hashed String
+Favourites|favourites|Array
+Primary role|primary_role|String
+Region|region|String
+Best Rank|best_rank|String
+Current Rank|current_rank|String
+Avatar|avatar|String
+Biography|biography|String
+
+**Favourites Array (nested inside user object)**
+**Title**|**Key in Collection**|**Data Type**
+:-----:|:-----:|:-----:
+Hero|hero|ObjectId
+Note|note|String
 
 **Heroes Collection**
 **Title**|**Key in Collection**|**Data Type**
@@ -85,20 +155,26 @@ Primary Attribute|primary_attr|String
 Hero Thumbnail|image_thumb|String
 Hero Portrait|image_full|String
 Hero Roles|roles|Array
+Attack type|attack|String
 
 The hero id property corresponds to the in game id of the hero and is used for administrative purposes.
 
 ## Features
 ### Implemented Features
-* Create account, login and logout
+* Authentication system to create account, login and logout
+* Passwords are encrypted using Werkzeug security package
 * Dynamically changing user interaction options based on if they are logged in or not
-* Displaying a list of heroes with a additional information on a popup modal
+* Full hero list display with a additional information in a popup modal in card format
+* API that handles a query from the user to filter heroes by their primary attribute
+* Dyanmic updating of the DOM with the response from the API
 * A favourite heroes list, which the user can modify from the hero page or a separate page displaying their list
-* If the hero is on the user's list, a white border will display on the heroes page
+* Additional section of the favourite list to store personal notes about each hero on the list
+* Personal profile page which the user can update with in game stats and a biography
+* Toast messages to inform user of actions such as adding and removing heroes
 
 ### Planned Features
 * Account deletion option
-* Flash/popup messages to confirm list has been modified
+* Page to display all users profiles for other users to view and connect with the community
 
 ## Technologies Used
 ### Languages
@@ -108,102 +184,147 @@ The hero id property corresponds to the in game id of the hero and is used for a
 * [JSON](https://www.json.org/json-en.html)
 * [Python](https://www.python.org/)
 
-### Tools and Libraries
+### Libraries
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+* [Flask PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
+* [dnspython](https://pypi.org/project/dnspython/)
+* [Pylint](https://pypi.org/project/pylint/)
+* [Pylint-Flask](https://pypi.org/project/pylint-flask/)
+* [Black](https://pypi.org/project/black/)
+* [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
+* [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
 * [Bootstrap](https://getbootstrap.com)
 * [Bootswatch](https://bootswatch.com/)
 * [JQuery](https://jquery.com)
 * [Popper.JS](https://popper.js.org/)
+
+### Tools
+* [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/)
+* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 * [Font Awesome](https://fontawesome.com/)
 * [Google Fonts](https://fonts.google.com)
 * [Git](https://git-scm.com/)
-* [Flask](https://flask.palletsprojects.com/en/1.1.x/)
-* [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
-* [Flask PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
-* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-* [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
-* [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/)
+* [Postman](https://www.postman.com/)
+* [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
+* [Formate](https://marketplace.visualstudio.com/items?itemName=MikeBovenlander.formate)
+* [JShint](https://jshint.com/)
+* [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 
-### Resources
-* [Stack Overflow](https://stackoverflow.com)
-* [MDN](https://developer.mozilla.org/en-US/)
-* [w3 Schools](https://www.w3schools.com/)
-* [Favicon Generator](https://www.favicon-generator.org/)
-* [Python Programming](https://pythonprogramming.net/)
-* [Miguel Grinberg's blog](https://blog.miguelgrinberg.com/)
+## Testing & Bugs
+A full write up for testing and dealing with bugs is [here](/TESTING.md)
 
-## Testing
+## Development & Deployment
+Note: *These instructions are applicable to Windows and VSCode, and will be using the tool [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/). A requirements.txt file is also available if you are not using Pipenv. If you are not using Windows or VSCode please refer to your IDE documentation for any differences.*
 
-#### Design -
-* <strong>Plan:</strong> Taking inspiration from the DOTA 2 user interface to create a website that is familiar for users
-* <strong>Implementation:</strong> The Bootswatch theme 'Slate' has a very similar look, with the shades of gunmetal grey, and the other chosen colours stand out very well
-* <strong>Test:</strong> To test this I compared it to the DOTA 2 website and in game UI
-* <strong>Result:</strong> After implementing this theme and using the coolers.co tool to create complimentary colours, a DOTA 2 inspired page is the clear end result
-* <strong>Verdict:</strong> This test has passed and the theme of the website fits the purpose
+### Local Development and Set-Up
+Requirements to run locally:
+* An IDE such as [VSCode](https://code.visualstudio.com/)
 
-#### Navigation -
-* <strong>Plan:</strong> A website that is easy to navigate to the desired page and interact with intuitively
-* <strong>Implementation:</strong> A navbar with relevant links is always present on the header, with dynamically changing options if a user is signed in. The same on the index page buttons, with the right one changing from a sign in to a favourites button upon sign in
-* <strong>Test:</strong> To test this I navigated around the website and used all the different functionality
-* <strong>Result:</strong> The interace is simple and easy to use, it is clear how to get to where you want to go
-* <strong>Verdict:</strong> This test has passed and the website is easy to navigate
+You have have installed
+* [Python 3](https://www.python.org/downloads/)
+* [PIP](https://pip.pypa.io/en/stable/installing/)
+* [Git](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
+* [MongoDB Community Edition](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
-#### Create and login to an account -
-* <strong>Plan:</strong> Functionality for users to create an account and login to it
-* <strong>Implementation:</strong> Originally checked documentation on flask-login, but found it not to be what I wanted. I opted for using the session module of Flask and writing the funcitonality into the app route function of the code. This code checks if the user exists and if the password is correct and then moves on. If there is an error it flashes a message on the form component informing the user, if everything is fine it will create an account or login to an existing one
-* <strong>Test:</strong> To test this I tried many combinations. I created test accounts, tried to create an account with duplicate name, tried to create an account with passwords that didn't match, tried to login with an account that didn't exist, logged in with an incorrect password. I implemented message flashing based on the action taken
-* <strong>Result:</strong> The user can create and login to an account easily
-* <strong>Verdict:</strong> This test has passed and users can create and login to an account
+You have a free account with [MongoDB Atlas](https://www.mongodb.com/) to create the database. Please refer to their documentation for instructions on how to create a new account and database
 
-#### Encrypt the user password -
-* <strong>Plan:</strong> To store users sensitive information in a secure way
-* <strong>Implementation:</strong> Using Werkzeug which comes with flask, I imported the security module and used the encrypting and decrypting functionality
-* <strong>Test:</strong> I created test accounts and using the print function in python output the resulting hashed string to check it was working, and also using mongodb checked my database for the password entry to confirm it had saved the correct information
-* <strong>Result:</strong> The users password is encrypted upon account creation and stored in the database only as the hashed version, not storing the original password
-* <strong>Verdict:</strong> This test has passed and the users password is encrypted
+*All commands from this point should be entered in the terminal of your IDE*
 
-#### Adding and removing from favourites list
-* <strong>Plan:</strong> To allow users to add and remove a hero from their personal list
-* <strong>Implementation:</strong> As there are many heroes in DOTA 2, I wanted a way to show the information in a concise yet easy to access way. The hero page has thumbnails of all the heroes, and when you click one it will bring up a modal with more information. This modal allows a user to add or remove a hero from their list. They can also remove a hero from their list in the list view
-* <strong>Test:</strong> To test this I used the test accounts and tried adding and deleting from the places it is possible
-* <strong>Result:</strong> The buttons to add and delete from list work and display the result
-* <strong>Verdict:</strong> This test has passed and the user can add and remove heroes from their list
+Install Pipenv with this command
 
-## Bugs
+`pip install --user pipenv`
 
-#### Displaying correct information on the front end
-* <strong>Bug:</strong> When a user was logged the expected data was not being correctly passed to the front end
-* <strong>Fix:</strong> In the app route functions adding checks for if a session exists and handling the data based on the result
-* <strong>Verdict:</strong> This bug was fixed and expected information is displayed
+#### Instructions
 
-#### Flashing messages with account forms
-* <strong>Bug:</strong> When a user entered an incorrect input the flashed message would not display correctly
-* <strong>Fix:</strong> This was fixed by making sure the code was correctly indented and line spaced for Python, and implementing an else statement
-* <strong>Verdict:</strong> This bug was fixed and the user is informed of the issue
+1. Clone the repository with this command
 
-#### Displaying a border around the hero thumbnails
-* <strong>Bug:</strong> A border is displayed around the hero thumbnails on the hero page if it is on the favouritesd list, but as the images can take some time to load the border will display as a white dot on the page before the image has loaded
-* <strong>Fix:</strong>
-* <strong>Verdict:</strong>
+    `git clone https://github.com/asdfractal/clockwerks-catalogue`
 
-## Deployment
-I developed this project using Visual Studio Code, using git for version control and GitHub to host the repository. The live version of the website is hosted on Heroku. I use a tool called [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/) for the handling of the virtual environment and requirements. This essentially functions like npm and replaces the requirements.txt file. The following steps assume VSCode and Pipenv, however a requirements.txt file is present should you need that option.
+2. In your IDE terminal, navigate to this folder
+3. Install the required packages and start your virtual environment with these commands
 
-A <a href="https://www.mongodb.com/">MongoDB</a> account is necessary to create the database.
+    `pipenv install`
 
-### Steps to deploy
-#### Cloning the repository
-* Clone the repository by either downloading from [here](https://github.com/asdfractal/clockwerks-catalogue) or in the terminal by typing:
-```
-git clone https://github.com/asdfractal/clockwerks-catalogue.git
-```
-* Navigate to this folder in the terminal and type:
-```
-pipenv install
-```
+    `pipenv shell`
 
+4. Set up your environment variables
+    * create a folder in project root called `.vscode`, inside this folder create a file called `settings.json` and create this json object. Remove the angle brackets `<>` and place your variables inside the quotes.
 
-#### Deploying on Heroku
+    ```json
+        "terminal.integrated.env.windows": {
+            "SECRET_KEY": "<your key>",
+            "MONGO_URI": "<your connection address>",
+            "DBNAME": "<your database name>",
+            "DEBUG": "True"
+        }
+    ```
 
+    * Note: `SECRET_KEY` is a long random string and can be generated [here](https://keygen.io/). To obtain `MONGO_URI` and `DBNAME` please refer to the MongoDB documentation
+    * Close your VSCode terminal session and open a fresh terminal to activate the variables, and restart your environment with `pipenv shell`
+    * Create a `.gitignore` file and add `.vscode` to ensure the security of your environment variables
+
+5. Load the data into the database
+
+Note: *Please follow [these](https://www.computerhope.com/issues/ch000549.htm) instructions for adding a variable to your system path in Windows, and create a new variable with this path*
+
+    `C:\Program Files\MongoDB\Server\4.4\bin`
+
+* Restart VSCode to register the new system path
+* Using the MongoDB website, retrive the connection URI for connecting via shell. This is in the same place as you got the environment variable. Enter the following command
+
+    `mongoimport --uri="YOUR_URI_HERE" --file=heroes.json`
+
+6. Start your environment and run the app locally with these commands
+
+    `pipenv shell`
+
+    `python app.py`
+
+    You can now view the website on your local machine at the address shown in the terminal
+
+### Heroku Deployment
+
+1. On the [Heroku](https://www.heroku.com/) website, create an account or login
+2. Create a new app from your dashboard by clicking **New** and then **Create new app**
+3. Enter a name, select a region and then click **Create app**
+4. Navigate to the **Settings** page, click on **Reveal Config Vars** in the Convig Vars section
+5. Set the following Config Vars
+
+    | Key | Value |
+    --- | ---
+    `SECRET_KEY` | `your key`
+    `MONGO_URI` | `your connection address`
+    `DBNAME` | `your database name`
+
+6. Before proceeding further you must create a new repo on github by following these steps
+    * On the [GitHub](https://github.com/) website, sign in or create an account
+    * Click on the *green* **New** button and give your repo a name, then click **Create repository**
+    * From the **Quick setup** section copy the github url to your repo
+    * In the terminal in your IDE, make sure you are in the project folder, change the remote and push with these commands
+
+    `git remote set-url origin YOUR_REPO_URL`
+
+    `git push`
+
+7. In Heroku, click on **Deploy** in the navigation bar
+8. In the **Deployment** section, select **GitHub** as the deployment method
+9. Search for your repository and click **Connect**
+10. Click Deploy Branch
+    * Optionally enable automatic deploys to deploy every time a the repository is updated
+11. Click on **Activity** tab to see the build log
+12. When build has succeeded, click on **Open App** to view the deployed site
 
 ## Credits
+* [Index Background](https://7wallpapers.net/dota2-clockwerk/)
+* Hero images and icons are from [Valve](https://www.valvesoftware.com/en/)
+* The loading spinner is taken from [loading.io](https://loading.io/css/)
+* During development I constantly referred to and used code from [Flask](https://flask.palletsprojects.com/en/1.1.x/api/) and [Python](https://docs.python.org/3/) documentation
 
+## Acknowledgements
+
+Huge thanks to [Simen Daehlin](https://github.com/Eventyret) for being an incredible mentor and teacher, and for helping me stay on top of everything when I was struggling.
+
+Code Institue for this great course and network that I am grateful to be a part of.
+
+### Disclaimer
+This site is part of a course project and is intended for educational purposes only
