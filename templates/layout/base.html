@@ -8,12 +8,13 @@
 
 <body class="d-flex flex-column h-100">
 	{% include 'components/header.html' %}
-	<main class="flex-shrink-0 {{main_wrapper}}">
+	<main class="flex-shrink-0 {{main_wrapper}}" id="main">
 		<section class="container-fluid {{content_wrapper}}">
 			{% block content %} {% endblock %}
 		</section>
 	</main>
-	<div class="card unsupported-browser">test</div>
+	<div class="unsupported-browser"></div>
+
 	{% with messages = get_flashed_messages(category_filter=("message")) %}
 	{% for message in messages %}
 	{% include 'components/toasts/toast.html' %}
@@ -34,8 +35,8 @@
 				let d = document.getElementsByClassName('unsupported-browser');
 				is_IE = isIE();
 				if (is_IE) {
-					document.getElementsByClassName('index-main-wrapper').style.display = 'none';
-					d[0].innerHTML = '<p>Sorry, your browser is out of date and not supported on this website. If you would like to play Quiz Wizard, please update your browser. We recommend <a href="https://www.google.com/chrome/" target="_blank">Google Chrome.</a></p>';
+					document.getElementById('main').style.display = 'none';
+					d[0].innerHTML = '<p>Sorry, your browser is out of date and not supported on this website. If you would like to use Clockwerk\'s Catalogue, please update your browser. We recommend <a href="https://www.google.com/chrome/" target="_blank">Google Chrome.</a></p>';
 					d[0].style.display = 'block';
 				}
 			}
