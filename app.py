@@ -57,7 +57,7 @@ def heroes():
             main_wrapper="heroes-main-wrapper",
             content_wrapper="heroes-content-wrapper",
         )
-    except:
+    except KeyError:
         return render_template(
             "pages/heroes.html",
             title="Heroes",
