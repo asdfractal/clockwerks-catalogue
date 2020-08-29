@@ -131,6 +131,8 @@ def add_hero_note(hero_id):
     user_id = ""
     user_profile = USERS.find_one({"name": session["username"]})
     note = request.form.get("note")
+    if note.isspace():
+        note = ""
     for key in user_profile:
         if key == "_id":
             user_id = user_profile[key]
