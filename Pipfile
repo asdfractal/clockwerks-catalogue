@@ -12,6 +12,7 @@ dnspython = "*"
 pylint = "*"
 pylint-flask = "*"
 black = "==19.10b0"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
