@@ -228,7 +228,7 @@ def create_user(username, password):
             "region": "",
             "best_rank": "",
             "current_rank": "",
-            "avatar": "../static/images/no_avatar.jpg",
+            "avatar": "/static/images/no_avatar.jpg",
             "biography": "",
         }
     )
@@ -345,7 +345,7 @@ def edit_profile(username):
     current_avatar = user_profile["avatar"]
 
     if request.method == "POST":
-        biography = request.form.get("biography")
+        biography = request.form.get("biography", "")
         if biography.isspace():
             biography = ""
         USERS.update_one(
