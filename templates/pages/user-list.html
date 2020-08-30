@@ -3,7 +3,7 @@
 <h1 class="page-title border-underline py-3">Favourites</h1>
 <div class="container display-box">
 	{% if user_favourites|length == 0 %}
-	<p class="text-center">You have no favourite heroes! <a class="text-link-color" href="{{url_for('heroes')}}">Add
+	<p class="text-center">You have no favourite heroes! <a class="color-dota-lighten" href="{{url_for('heroes')}}">Add
 			one.</a></p>
 	{% endif %}
 	{% for fav in user_favourites %}
