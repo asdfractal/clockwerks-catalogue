@@ -13,8 +13,16 @@ const loadingSpinner = $("#loadingOverlay")
  */
 const queryApi = async (query) => {
 	const queryUrl = `/api/heroes/?attr=${query}`
-	const res = await fetch(queryUrl)
-	return await res.json()
+	loadingSpinner.show()
+	try {
+		const res = await fetch(queryUrl)
+		return await res.json()
+	} catch {
+		$("#errorMessage").text(
+			"There was an error contacting the server. Please try again later.",
+		)
+		return false
+	}
 }
 
 /**
@@ -23,13 +31,18 @@ const queryApi = async (query) => {
  * @param {string} query the attribute to filter by
  */
 const processData = async (query) => {
-	loadingSpinner.show()
 	const data = await queryApi(query)
+	if (data === false) {
+		loadingSpinner.hide()
+		heroFilterButton.removeClass("hero-filter-active")
+		return
+	}
 	const dataValues = []
 	for (const id of Object.values(data)) {
 		dataValues.push(id)
 	}
 	filterHeroes(dataValues)
+	loadingSpinner.hide()
 }
 
 /**
@@ -41,7 +54,6 @@ const filterHeroes = (heroes) => {
 	heroes.forEach((id) => {
 		$(`#${id}`).parent().parent().show()
 	})
-	loadingSpinner.hide()
 	heroFilterTitle.text(`${_this.id}`).addClass("mb-3")
 }
 
