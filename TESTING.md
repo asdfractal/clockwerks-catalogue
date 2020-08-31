@@ -1,19 +1,25 @@
 # Testing & Bugs
 
 ## Contents:
-* Testing
-    * Feature Tests
-        * Authentication
-    * Responsiveness
-    * Browser Compatibility
-    * Forward and Back button navigation
-    * Code Verification
-        * W3 HTML
-        * W3 CSS
-        * JavaScript
-        * Python
-    * Chrome devtools Lighthouse
-* Bugs
+* [Testing](#Testing)
+    * [Feature Tests](#Feature-Tests)
+        * [Authentication](#Authentication)
+        * [Encrypted passwords](#Encrypted-passwords)
+        * [Hero Display & Info Card](#Hero-Display--Info-Card)
+        * [API & Hero Filter](#API--Hero-Filter)
+        * [Favourites list](#Favourites-list)
+        * [Profile](#Profile)
+        * [Toast Messages](#Toast-Messages)
+    * [Responsiveness](#Responsiveness)
+    * [Browser Compatibility](#Browser-Compatibility)
+    * [Forward & Back button navigation](#Forward--Back-button-navigation)
+    * [Code Verification](#Code-Verification)
+        * [W3 HTML](#W3-HTML-Validator)
+        * [W3 CSS](#W3-CSS-Validator)
+        * [JavaScript](#JavaScript)
+        * [Python](#Python)
+    * [Chrome Dev Tools Lighthouse](#Chrome-Dev-Tools-Lighthouse)
+* [Bugs](#Bugs+)
 
 ## Testing
 The whole project was testing thorougly throughout the development process using Chrome Dev Tools and personally using the features. I have ensured that I cover all requirements and expectations of the user stories, as well as adding additional functionality and user experience through testing initial implementation and improving on the experience.
@@ -53,7 +59,7 @@ Passwords are securely stored and users data is not exposed
 #### Verdict
 This test has passed
 
-### Hero Display and Info Card
+### Hero Display & Info Card
 
 #### Expectation
 There is a display of all heroes for a user to select from, and a way to view more information
@@ -167,7 +173,7 @@ The website functions as intended on major browsers
 ##### Verdict
 This test has passed
 
-### Forward and Back button navigation
+### Forward & Back button navigation
 
 ##### Expectation
 The website is navigable using the forward and back buttons and does not break or have unintended actions

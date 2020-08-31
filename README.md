@@ -5,36 +5,36 @@ A small web app designed to allow users to create a list of their favourite hero
 This is a website developed for Code Institute milestone project 3.
 
 ## Contents:
-* User Experience
-    * Project Goals
-    * Target Audience Goals
-    * Site Owner Goals
-    * User Stories
-    * Requirements
-    * Expectations
-* Design Choices
-    * Colours
-    * Fonts
-    * Icons
-    * CSS
-    * Images
-    * Wireframes
-    * Code Styling
-* Information Architecture
-* Features
-    * Implemented Features
-    * Planned Features
-* Technologies Used
-    * Languages
-    * Tools & Libraries
-* Testing & Bugs
-* Development & Deployment
-    * Local Development and Set-Up
-    * Heroku Deployment
-* Credits
-    * Images
-* Acknowledgements
-* Disclaimer
+* [User Experience](#User-Experience)
+    * [Project Goals](#Project-Goals)
+    * [Target Audience Goals](#Target-Audience-Goals)
+    * [Site Owner Goals](#Site-Owner-Goals)
+    * [User Stories](#User-Stories)
+    * [Requirements](#Requirements)
+    * [Expectations](#Expectations)
+* [Design Choices](#Design-Choices)
+    * [Colours](#Colours)
+    * [Fonts](#Fonts)
+    * [Icons](#Icons)
+    * [CSS](#CSS)
+    * [Images](#Images)
+    * [Wireframes](#Wireframes)
+    * [Code Styling](#Code-Styling)
+* [Information Architecture](#Information-Architecture)
+* [Features](#Features)
+    * [Implemented Features](#Implemented-Features)
+    * [Planned Features](#Planned-Features)
+* [Technologies Used](#Technologies-Used)
+    * [Languages](#Languages)
+    * [Libraries](#Libraries)
+    * [Tools](#Tools)
+* [Testing & Bugs](#Testing--Bugs)
+* [Development & Deployment](#Development--Deployment)
+    * [Local Development & Set-Up](#Local-Development--Set-Up)
+    * [Heroku Deployment](#Heroku-Deployment)
+* [Credits](#Credits)
+* [Acknowledgements](#Acknowledgements)
+* [Disclaimer](#Disclaimer)
 
 ## User Experience
 
@@ -217,7 +217,7 @@ A full write up for testing and dealing with bugs is [here](/TESTING.md)
 ## Development & Deployment
 Note: *These instructions are applicable to Windows and VSCode, and will be using the tool [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/). A requirements.txt file is also available if you are not using Pipenv. If you are not using Windows or VSCode please refer to your IDE documentation for any differences.*
 
-### Local Development and Set-Up
+### Local Development & Set-Up
 Requirements to run locally:
 * An IDE such as [VSCode](https://code.visualstudio.com/)
 
