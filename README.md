@@ -227,7 +227,7 @@ You have have installed
 * [Git](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
 * [MongoDB Community Edition](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
-You have a free account with [MongoDB Atlas](https://www.mongodb.com/) to create the database. Please refer to their documentation for instructions on how to create a new account and database
+You have a free account with [MongoDB Atlas](https://www.mongodb.com/) to create the database. Please refer to [their documentation](https://docs.atlas.mongodb.com/getting-started/) for instructions on how to create a new account and database
 
 *All commands from this point should be entered in the terminal of your IDE*
 
@@ -270,7 +270,7 @@ Install Pipenv with this command
 
 Note: *Please follow [these](https://www.computerhope.com/issues/ch000549.htm) instructions for adding a variable to your system path in Windows, and create a new variable with this path*
 
-    `C:\Program Files\MongoDB\Server\4.4\bin`
+    C:\Program Files\MongoDB\Server\4.4\bin
 
 * Restart VSCode to register the new system path
 * Please refer to the [MongoDB documentation](https://docs.atlas.mongodb.com/command-line-tools/) on how to connect to the cluster using the CLI. Enter the following command
