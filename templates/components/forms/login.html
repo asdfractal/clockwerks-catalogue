@@ -15,7 +15,7 @@
 		</div>
 		{% with messages = get_flashed_messages(category_filter=("error")) %}
 		{% for message in messages %}
-		<p class="form-message-error">{{ message }}</p>
+		<p class="text-error">{{ message }}</p>
 		{% endfor %}
 		{% endwith %}
 	</fieldset>

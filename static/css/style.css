@@ -91,6 +91,11 @@ a:hover {
 	box-shadow: none !important;
 }
 
+.text-error {
+	font-size: 1.4rem;
+	color: red;
+}
+
 .icon-small {
 	font-size: 2.5rem;
 }
@@ -168,11 +173,6 @@ a:hover {
 	border: #9E2F19 1.5px solid;
 	font-size: 1.6rem;
 
-}
-
-.form-message-error {
-	font-size: 1.4rem;
-	color: red;
 }
 
 .toast {
