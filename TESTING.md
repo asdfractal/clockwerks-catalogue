@@ -30,7 +30,7 @@ Using Jinja template varaibles to remove certain options to anonymous users and 
 * While not logged in -
     * Confirm the navbar is displaying a link to login and not to favourites and profile
     * In the address bar enter '/favourites/' and confirm redirect to the login page with a toast notification
-    * In the address bar enter '/user/username' and confirm redirect to the login page with a toast notification
+    * In the address bar enter '/user/username/' and confirm redirect to the login page with a toast notification
 #### Result
 Unregistered users are not provided with options to access areas intended for registered users, and if they access it via address bar there are systems to deal with it
 #### Verdict
@@ -79,6 +79,7 @@ An API route that queries the server with the primary attribute to be filtered. 
 * Using Postman, confirm the server is sending the intended response
 * On the hero page, click each of the attribute buttons and confirm the expected heroes are being displayed
 * Click each button on and off very fast to ensure it doesn't break
+* Confirm loading spinner is displayed while waiting for response, and hides when the DOM is updated
 * Confirm the filter is disabled by clicking the button again
 #### Result
 Heroes can be filtered by their primary attribute
@@ -95,7 +96,7 @@ Using the hero modal cards, users can click the heart button to add or remove a 
 * While logged in, navigate to hero page, open a modal and click the heart, confirm hero is on my list
 * Open the same hero and click the heart, confirm hero has been removed
 * With at least one hero in my list, navigate to favourites page
-* Click hero's name or down chevron, enter a note and click save
+* Click hero's image or down chevron, enter a note and click save
 * Expand that hero's notes and confirm note is saved
 * Change the note to something else and click save, confirm note is updated
 * Expand that hero's notes and click delete, confirm note has been deleted
@@ -117,6 +118,9 @@ A profile page that users can update with stats to do with the game, such as the
 * Confirm all data is saved
 * Click edit, delete biography, click Update and confirm nothing is displayed
 * Click edit, enter whitespace only as biography, click Update and confirm handling of empty string because nothing is displayed
+* Click the image next to 'Select Avatar' option
+* Select an avatar and confirm avatar is now displayed on profile
+* Click edit, click avatar image, select a different image and confirm new selection is displayed on profile
 #### Result
 Users can create a personal profile
 #### Verdict

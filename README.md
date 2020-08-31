@@ -193,6 +193,7 @@ The hero id property corresponds to the in game id of the hero and is used for a
 * [Black](https://pypi.org/project/black/)
 * [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
 * [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
+* [Gunicorn](https://gunicorn.org/)
 * [Bootstrap](https://getbootstrap.com)
 * [Bootswatch](https://bootswatch.com/)
 * [JQuery](https://jquery.com)
@@ -259,7 +260,9 @@ Install Pipenv with this command
         }
     ```
 
-    * Note: `SECRET_KEY` is a long random string and can be generated [here](https://keygen.io/). To obtain `MONGO_URI` and `DBNAME` please refer to the MongoDB documentation
+    * `SECRET_KEY` is a long random string and can be generated [here](https://keygen.io/).
+    * To obtain `MONGO_URI` please refer to the [MongoDB documentation](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/) on how to connect your app to the cluster
+    * `DBNAME` is your chosen database name when you made an account
     * Close your VSCode terminal session and open a fresh terminal to activate the variables, and restart your environment with `pipenv shell`
     * Create a `.gitignore` file and add `.vscode` to ensure the security of your environment variables
 
@@ -270,7 +273,7 @@ Note: *Please follow [these](https://www.computerhope.com/issues/ch000549.htm) i
     `C:\Program Files\MongoDB\Server\4.4\bin`
 
 * Restart VSCode to register the new system path
-* Using the MongoDB website, retrive the connection URI for connecting via shell. This is in the same place as you got the environment variable. Enter the following command
+* Please refer to the [MongoDB documentation](https://docs.atlas.mongodb.com/command-line-tools/) on how to connect to the cluster using the CLI. Enter the following command
 
     `mongoimport --uri="YOUR_URI_HERE" --file=heroes.json`
 
@@ -293,6 +296,7 @@ Note: *Please follow [these](https://www.computerhope.com/issues/ch000549.htm) i
     | Key | Value |
     --- | ---
     `SECRET_KEY` | `your key`
+    `IP` | 0.0.0.0
     `MONGO_URI` | `your connection address`
     `DBNAME` | `your database name`
 
@@ -318,13 +322,16 @@ Note: *Please follow [these](https://www.computerhope.com/issues/ch000549.htm) i
 * [Index Background](https://7wallpapers.net/dota2-clockwerk/)
 * Hero images and icons are from [Valve](https://www.valvesoftware.com/en/)
 * The loading spinner is taken from [loading.io](https://loading.io/css/)
+* I referred to [this](https://dev.to/techparida/how-to-deploy-a-flask-app-on-heroku-heb) on setting up Gunicorn to serve the website securely and without the 'development server' warning
 * During development I constantly referred to and used code from [Flask](https://flask.palletsprojects.com/en/1.1.x/api/) and [Python](https://docs.python.org/3/) documentation
 
 ## Acknowledgements
 
 Huge thanks to [Simen Daehlin](https://github.com/Eventyret) for being an incredible mentor and teacher, and for helping me stay on top of everything when I was struggling.
 
-Code Institue for this great course and network that I am grateful to be a part of.
+Thanks to fellow student [Stephen Seagrave](https://github.com/nemixu) for testing the deployed website and offering feedback.
+
+[Code Institute](https://codeinstitute.net/) for this great course and network that I am grateful to be a part of.
 
 ### Disclaimer
 This site is part of a course project and is intended for educational purposes only
